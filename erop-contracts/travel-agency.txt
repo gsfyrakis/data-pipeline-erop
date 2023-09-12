@@ -1,0 +1,58 @@
+rule "R1"  when  
+    e matches (botype == Initialization)  
+then  
+    travelAgent.rights += PropOffer("15/12/2003");  
+end
+
+rule "R2"  when  
+    e matches (botype == PropOffer, originator == travelAgent,  responder == customer, outcome == Success)  
+    PropOffer in travelAgent.rights  
+then  
+    customer.rights += PropAccept("31/12/2003");  
+end  
+
+rule "R3"  when  
+    e matches (botype == PropAccept, originator == customer,  responder == travelAgent, outcome == Success)  
+    PropAccept in customer.rights  
+    !happened(PropAccept, customer, travelAgent,  success, *)  
+then  
+    customer.obligs += CCPayment("4d");  
+    travelAgent.rights -= PropOffer;  
+end
+
+rule "R4"  when  
+    e matches (botype == CCPayment, originator == customer,  responder == travelAgent)  
+    e.outcome != Success  CCPayment in customer.obligs  (countHappened(CCPayment, customer, travelAgent,  TecFail, *)  
+    +countHappened(CCPayment, customer, travelAgent,  InitFail, *)  
+    +countHappened(CCPayment, customer, travelAgent,  BizFail, *) >=2  
+then  
+    customer.obligs -= CCPayment;  
+    customer.obligs += OtherPayment("7d");  
+end
+
+rule "R5"  when
+    e matches (botype == OtherPayment, originator == customer,  responder == travelAgent)  
+    e.outcome != Success  OtherPayment in customer.obligs  
+    !happened(OtherPayment, customer, travelAgent,  TecFail, *)  
+    !happened(OtherPayment, customer, travelAgent,  BizFail, *)  
+    !happened(OtherPayment, customer, travelAgent,  InitFail, *)  
+then  
+    customer.obligs -= OtherPayment;  
+    abort;  
+end  
+
+rule "R6-CCPayment"  when  
+    e matches (botype == CCPayment, originator == customer,  responder == travelAgent, outcome == Success)  
+    CCPayment in customer.obligs  
+then  
+    customer.obligs -= CCPayment;  
+    travelAgent.obligs += ItemDelivery("4d");  
+end  
+
+rule "R6-OtherPayment"  when  
+    e matches (botype == OtherPayment, originator == customer,  responder == travelAgent, outcome == Success)  
+    OtherPayment in customer.obligs  
+then  
+    customer.obligs -= OtherPayment;  
+    travelAgent.obligs += ItemDelivery("4d");
+end

@@ -1,0 +1,37 @@
+rule "R1"  when  
+    e matches (botype == init)  
+then  
+    user.rights += PlayMusic();  
+    pandora.rights += Advertise();  
+end
+
+rule "R2"  when  
+    e matches (botype == Subscribe, originator == user,  outcome == Success)  
+then  
+    pandora.rights -= Advertise;  
+    user.obligs += Subscribe("12m");  
+end
+
+rule "R3"  when  
+    e matches (botype == SubscribeTimeout, originator == user)  
+    Subscribe in user.obligs  
+then  
+    user.obligs -= Subscribe;  
+    pandora.rights += Advertise();  
+end
+
+rule "R4"  when  
+    e matches (botype == PlayMusic, originator == user,  outcome == TecFail)  
+    PlayMusic in user.rights  
+    happened(Subscribe, user, pandora, timestamp < ’1y’, *)  
+    !Advertise in pandora.rights  
+then  
+    user.rights += RequestRefund();  
+end
+
+rule "R5"  when  
+    e matches (botype == RequestRefund, originator == user,  outcome == Success)  RequestRefund in user.rights  
+then  
+    pandora.obligs += Refund("24h");  
+end
+

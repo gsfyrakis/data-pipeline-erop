@@ -1,0 +1,24 @@
+<AugmentedDroolsLookup>
+	<EventMatchField>
+		<botype>type</botype>
+		<outcome>status</outcome>
+		<originator>originator</originator>
+		<responder>responder</responder>
+	</EventMatchField>
+	<TimePartialKey>
+		<day>getWeekDay()</day>
+		<time>getHour()</time>
+		<year>getYear()</year>
+		<month>getMonth()</month>
+	</TimePartialKey>
+	<RopManipulation>
+		<obligs>Obligation</obligs>
+		<rights>Right</rights>
+		<prohibs>Prohibition</prohibs>
+	</RopManipulation>
+	<OutcomeManipulationGet>
+		<BizFail>getBusinessFailure()</BizFail>
+		<TecFail>getTechnicalFailure()</TecFail></OutcomeManipulationGet>
+	<OutcomeManipulationSet>
+		<BizFail>setBusinessFailure</BizFail></OutcomeManipulationSet>
+</AugmentedDroolsLookup>

@@ -1,0 +1,47 @@
+roleplayer pupplier,purchaser
+businessoperation POSubmission,GoodsDelivery,Payment,SpecialPOSubmission,ReplacementClaim,InterestPayment,GoodsDeliveryTimeout;
+rule "R1NormalOrder"  when  
+    e matches (botype == POSubmission,originator == purchaser,outcome == success)  
+    POSubmission in purchaser.rights  
+then  
+    supplier.obligs += GoodsDelivery(supplier)
+    purchaser.obligs += Payment(purchaser)  
+end
+
+rule "R1SpecialOrder"  when  
+    e matches (botype == SpecialPOSubmission,originator == purchaser,outcome == success)  
+    SpecialPOSubmission in purchaser.rights  
+then  
+    supplier.obligs += GoodsDelivery(supplier)  
+    purchaser.obligs += Payment(purchaser)  
+end
+
+rule "R2"  when  
+    e matches (botype == Payment,originator == purchaser,outcome == success)  
+    Payment in purchaser.obligs  
+then
+    purchaser.obligs -= Payment(supplier)
+    purchaser.obligs += InterestPayment(purchaser)
+end
+
+rule "R3" when 
+    e matches (botype == GoodsDelivery,originator == supplier)  
+    GoodsDelivery in supplier.obligs  
+then  
+    supplier.obligs -= GoodsDelivery(purchaser)  
+    purchaser.rights += ReplacementClaim(purchaser)  
+end
+
+rule "R4"  when  
+    e matches (botype == ReplacementClaim,originator == purchaser,outcome == success)  
+    ReplacementClaim in purchaser.rights  
+then  
+    supplier.obligs += GoodsDelivery(supplier)  
+end
+
+rule "R5"  when  
+    e matches (botype == GoodsDeliveryTimeout,originator == supplier,outcome == success)  
+    GoodsDelivery in supplier.obligs  
+then  
+    supplier.obligs -= GoodsDelivery(supplier)
+end
