@@ -1,13 +1,13 @@
 package com.translator.driver;
-
+// adapted by Ioannis Sfyrakis
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
 import com.translator.antlr.EropExtractorListener;
-import com.translator.antlr.EropcpLexer;
-import com.translator.antlr.EropcpParser;
+import com.translator.antlr.EropPatientAILexer;
+import com.translator.antlr.EropPatientAIParser;
 import com.translator.antlr.TranslationWriter;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -19,6 +19,9 @@ import com.translator.utils.VariableFlagger;
 import com.translator.utils.VariablesMemory;
 import com.translator.utils.XmlLookup;
 
+/**
+ *
+ */
 public class Main {
 
     public static void main(String[] args) {
@@ -47,9 +50,9 @@ public class Main {
         TranslationWriter writer = new TranslationWriter(inputFP, outputFP);
         Translator translator = new Translator(memory, writer, new XmlLookup());
 
-        EropcpLexer lexer = new EropcpLexer(input);
+        EropPatientAILexer lexer = new EropPatientAILexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-        EropcpParser parser = new EropcpParser(tokens);
+        EropPatientAIParser parser = new EropPatientAIParser(tokens);
         ParseTree tree = parser.contractDocument(); // parse
         ParseTreeWalker walker = new ParseTreeWalker(); // create standard walker
         EropExtractorListener extractor = new EropExtractorListener(parser, flagger, memory);

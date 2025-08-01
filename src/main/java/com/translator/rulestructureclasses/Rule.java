@@ -13,7 +13,7 @@ public class Rule {
 
     public Rule() {
         this.name = "not set";
-        this.event = "not set";
+        this.event = "e"; // TODO check if we need add not set as an initial state of the event
         this.eventMatchConditions = new LinkedList<EventMatchCondition>();
         this.constraints = new Constraint();
         this.rhs = new RhsAction();

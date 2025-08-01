@@ -1,0 +1,29 @@
+roleplayer dataController,dataProcessor,qualityAssessor,biasAuditor,regulatoryOfficer;
+governanceoperation DataCollection,DataAnnotation,DataLabelling,DataCleaning;
+governanceoperation DataUpdating,DataEnrichment,DataAggregation,DataValidation;
+governanceoperation QualityAssessment,DatasetSuitabilityReview,DataGapAnalysis;
+governanceoperation BiasDetection,BiasMitigation,FairnessAudit,DemographicAnalysis;
+governanceoperation ComplianceReview,RegulatoryApproval,DataGovernanceAudit;
+governanceoperation SpecialCategoryDataReview,ConsentValidation,DataMinimizationCheck;
+governanceoperation ProvenanceDocumentation,DataLineageTracking,AuditTrailCreation;
+compoblig DataPreparationCompliance (DataAnnotation,DataLabelling,DataCleaning,DataUpdating,DataEnrichment,DataAggregation);
+compoblig BiasManagementCompliance (BiasDetection,BiasMitigation,FairnessAudit);
+compoblig QualityAssuranceCompliance (QualityAssessment,DatasetSuitabilityReview,DataGapAnalysis);
+compoblig GovernanceCompliance (ComplianceReview,RegulatoryApproval,DataGovernanceAudit);
+
+rule "R1DataCollectionGovernance"
+when
+    e matches (botype == DataCollection, originator == dataProcessor, responder == dataController, outcome == Success)
+then
+    Success:
+        if (DataCollection in dataProcessor.rights)
+        then
+            dataProcessor.obligs += ProvenanceDocumentation(dataController,"24h");
+            dataProcessor.obligs += ConsentValidation(dataController,"12h");
+            qualityAssessor.obligs += QualityAssessment(dataProcessor,"48h");
+            dataProcessor.rights += DataPreparationCompliance(qualityAssessor,"7d");
+        endif
+         regulatoryOfficer.obligs += ComplianceReview(dataProcessor, "4h");
+    Otherwise:
+       pass;
+end

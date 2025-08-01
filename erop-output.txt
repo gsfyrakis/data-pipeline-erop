@@ -1,0 +1,350 @@
+package DataGovernanceComplianceContract
+
+import uk.ac.ncl.erop.*;
+import uk.ac.ncl.logging.CCCLogger;
+
+// Global declarations for EROP ontology components
+global RelevanceEngine engine;
+global EventLogger logger;
+global TimingMonitor timingMonitor;
+
+// Role players
+global RolePlayer dataController;
+global ROPSet ropDataController;
+global RolePlayer dataProcessor;
+global ROPSet ropDataProcessor;
+global RolePlayer qualityAssessor;
+global ROPSet ropQualityAssessor;
+global RolePlayer biasAuditor;
+global ROPSet ropBiasAuditor;
+global RolePlayer regulatoryOfficer;
+global ROPSet ropRegulatoryOfficer;
+
+// Governance operations
+global GovernanceOperation dataCollection;
+global GovernanceOperation dataAnnotation;
+global GovernanceOperation dataLabelling;
+global GovernanceOperation dataCleaning;
+global GovernanceOperation dataUpdating;
+global GovernanceOperation dataEnrichment;
+global GovernanceOperation dataAggregation;
+global GovernanceOperation dataValidation;
+global GovernanceOperation qualityAssessment;
+global GovernanceOperation datasetSuitabilityReview;
+global GovernanceOperation dataGapAnalysis;
+global GovernanceOperation biasDetection;
+global GovernanceOperation biasMitigation;
+global GovernanceOperation fairnessAudit;
+global GovernanceOperation demographicAnalysis;
+global GovernanceOperation complianceReview;
+global GovernanceOperation regulatoryApproval;
+global GovernanceOperation dataGovernanceAudit;
+global GovernanceOperation specialCategoryDataReview;
+global GovernanceOperation consentValidation;
+global GovernanceOperation dataMinimizationCheck;
+global GovernanceOperation provenanceDocumentation;
+global GovernanceOperation dataLineageTracking;
+global GovernanceOperation auditTrailCreation;
+
+// Composite obligations
+global GovernanceOperation[] dataPreparationCompliance;
+global GovernanceOperation[] biasManagementCompliance;
+global GovernanceOperation[] qualityAssuranceCompliance;
+global GovernanceOperation[] governanceCompliance;
+
+// R1: Data Collection Governance - Success path
+rule "R1DataCollectionGovernanceSuccess"
+when
+    $e: Event(type in ("DataCollection", "DataLabelling"), originator == "dataProcessor", status == "Success")
+    eval(ropDataProcessor.matchesRights(dataCollection))
+then
+    ropDataProcessor.addObligation("ProvenanceDocumentation", provenanceDocumentation, null, "24h");
+    ropDataProcessor.addObligation("ConsentValidation", consentValidation, null, "12h");
+    ropQualityAssessor.addObligation("QualityAssessment", qualityAssessment, null, "48h");
+    ropDataProcessor.addRight("DataPreparationCompliance", dataPreparationCompliance, "7d");
+end
+
+// R1: Data Collection Governance - Otherwise path
+rule "R1DataCollectionGovernanceOtherwise"
+when
+    $e: Event(type in ("DataCollection", "DataLabelling"))
+    eval(!($e.getOriginator().equals("dataProcessor") && ropDataProcessor.matchesRights(dataCollection)))
+then
+    ropRegulatoryOfficer.addObligation("ComplianceReview", complianceReview, null, "4h");
+end
+
+// R2: Data Preparation Compliance - Success path
+rule "R2DataPreparationComplianceSuccess"
+when
+    $e: Event(type in ("DataAnnotation", "DataLabelling", "DataCleaning", "DataUpdating", "DataEnrichment", "DataAggregation"), 
+              originator == "dataProcessor", status == "Success")
+    eval(ropDataProcessor.matchesRights("DataPreparationCompliance"))
+then
+    ropDataProcessor.addObligation("DataLineageTracking", dataLineageTracking, null, "2h");
+    ropQualityAssessor.addObligation("DataValidation", dataValidation, null, "24h");
+end
+
+// R2: Data Preparation Compliance - Success path with bias detection for annotation/labelling
+rule "R2DataPreparationComplianceSuccessWithBias"
+when
+    $e: Event(type in ("DataAnnotation", "DataLabelling"), originator == "dataProcessor", status == "Success")
+    eval(ropDataProcessor.matchesRights("DataPreparationCompliance"))
+then
+    ropDataProcessor.addObligation("DataLineageTracking", dataLineageTracking, null, "2h");
+    ropQualityAssessor.addObligation("DataValidation", dataValidation, null, "24h");
+    ropBiasAuditor.addObligation("BiasDetection", biasDetection, null, "48h");
+end
+
+// R2: Data Preparation Compliance - Technical Failure
+rule "R2DataPreparationComplianceTecFail"
+when
+    $e: Event(type in ("DataAnnotation", "DataLabelling", "DataCleaning", "DataUpdating", "DataEnrichment", "DataAggregation"), 
+              status == "TecFail")
+then
+    ropQualityAssessor.addObligation("DataGapAnalysis", dataGapAnalysis, null, "4h");
+    ropRegulatoryOfficer.addObligation("ComplianceReview", complianceReview, null, "8h");
+end
+
+// R2: Data Preparation Compliance - Business Failure
+rule "R2DataPreparationComplianceBizFail"
+when
+    $e: Event(type in ("DataAnnotation", "DataLabelling", "DataCleaning", "DataUpdating", "DataEnrichment", "DataAggregation"), 
+              status == "BizFail")
+then
+    ropDataController.addObligation("DataGovernanceAudit", dataGovernanceAudit, null, "24h");
+end
+
+// R3: Quality Assessment Compliance - Success path
+rule "R3QualityAssessmentComplianceSuccess"
+when
+    $e: Event(type == "QualityAssessment", originator == "qualityAssessor", status == "Success")
+    eval(ropQualityAssessor.matchesObligation(qualityAssessment))
+then
+    ropQualityAssessor.removeObligation(qualityAssessment);
+    ropQualityAssessor.addObligation("DatasetSuitabilityReview", datasetSuitabilityReview, null, "24h");
+    ropBiasAuditor.addRight("BiasManagementCompliance", biasManagementCompliance, "5d");
+end
+
+// R3: Quality Assessment Compliance - Otherwise path
+rule "R3QualityAssessmentComplianceOtherwise"
+when
+    $e: Event(type == "QualityAssessment")
+    eval(!($e.getOriginator().equals("qualityAssessor") && ropQualityAssessor.matchesObligation(qualityAssessment)))
+then
+    ropQualityAssessor.addObligation("DataGapAnalysis", dataGapAnalysis, null, "12h");
+    ropDataProcessor.addProhibition("DataPreparationCompliance");
+end
+
+// R4: Bias Management Compliance - Success path without previous detection
+rule "R4BiasManagementComplianceSuccess"
+when
+    $e: Event(type == "BiasDetection", originator == "biasAuditor", status == "Success")
+    eval(ropBiasAuditor.matchesObligation(biasDetection))
+    eval(engine.countHappened("BiasDetection", "biasAuditor", null, "Success", null) < 1)
+then
+    ropBiasAuditor.removeObligation(biasDetection);
+    ropBiasAuditor.addObligation("DemographicAnalysis", demographicAnalysis, null, "48h");
+end
+
+// R4: Bias Management Compliance - Success path with mitigation trigger
+rule "R4BiasManagementComplianceSuccessWithMitigation"
+when
+    $e: Event(type == "BiasDetection", originator == "biasAuditor", status == "Success")
+    eval(ropBiasAuditor.matchesObligation(biasDetection))
+    eval(engine.countHappened("BiasDetection", "biasAuditor", null, "Success", null) >= 1)
+then
+    ropBiasAuditor.removeObligation(biasDetection);
+    ropBiasAuditor.addObligation("DemographicAnalysis", demographicAnalysis, null, "48h");
+    ropBiasAuditor.addObligation("BiasMitigation", biasMitigation, null, "72h");
+end
+
+// R4: Bias Management Compliance - Otherwise path (terminate on BizFail)
+rule "R4BiasManagementComplianceOtherwise"
+when
+    $e: Event(type == "BiasDetection")
+    eval(!($e.getOriginator().equals("biasAuditor") && ropBiasAuditor.matchesObligation(biasDetection)))
+then
+    engine.terminate("BizFail");
+end
+
+// R5: Special Category Data Compliance - Success path
+rule "R5SpecialCategoryDataComplianceSuccess"
+when
+    $e: Event(type == "SpecialCategoryDataReview", originator == "regulatoryOfficer", status == "Success")
+    eval(ropRegulatoryOfficer.matchesObligation(specialCategoryDataReview))
+then
+    ropRegulatoryOfficer.removeObligation(specialCategoryDataReview);
+    ropDataProcessor.addObligation("DataMinimizationCheck", dataMinimizationCheck, null, "24h");
+    ropBiasAuditor.addObligation("FairnessAudit", fairnessAudit, null, "48h");
+    ropDataController.addObligation("AuditTrailCreation", auditTrailCreation, null, "12h");
+end
+
+// R5: Special Category Data Compliance - Otherwise path
+rule "R5SpecialCategoryDataComplianceOtherwise"
+when
+    $e: Event(type == "SpecialCategoryDataReview")
+    eval(!($e.getOriginator().equals("regulatoryOfficer") && ropRegulatoryOfficer.matchesObligation(specialCategoryDataReview)))
+then
+    engine.terminate("BizFail");
+end
+
+// R6: Data Gap Analysis Compliance - Success path
+rule "R6DataGapAnalysisComplianceSuccess"
+when
+    $e: Event(type == "DataGapAnalysis", originator == "qualityAssessor", status == "Success")
+    eval(ropQualityAssessor.matchesObligation(dataGapAnalysis))
+    eval(engine.countHappened("DataGapAnalysis", "qualityAssessor", null, "Success", null) >= 1)
+then
+    ropQualityAssessor.removeObligation(dataGapAnalysis);
+    ropDataController.addRight("DataCollection", dataCollection, "30d");
+    ropDataProcessor.addRight("DataPreparationCompliance", dataPreparationCompliance, "7d");
+    ropDataProcessor.removeProhibition("DataPreparationCompliance");
+end
+
+// R6: Data Gap Analysis Compliance - Success path without count condition
+rule "R6DataGapAnalysisComplianceSuccessNoCount"
+when
+    $e: Event(type == "DataGapAnalysis", originator == "qualityAssessor", status == "Success")
+    eval(ropQualityAssessor.matchesObligation(dataGapAnalysis))
+    eval(engine.countHappened("DataGapAnalysis", "qualityAssessor", null, "Success", null) < 1)
+then
+    ropQualityAssessor.removeObligation(dataGapAnalysis);
+end
+
+// R6: Data Gap Analysis Compliance - Otherwise path
+rule "R6DataGapAnalysisComplianceOtherwise"
+when
+    $e: Event(type == "DataGapAnalysis")
+    eval(!($e.getOriginator().equals("qualityAssessor") && ropQualityAssessor.matchesObligation(dataGapAnalysis)))
+then
+    ropDataController.addObligation("DataGovernanceAudit", dataGovernanceAudit, null, "48h");
+end
+
+// R7: Regulatory Compliance Review - Success path
+rule "R7RegulatoryComplianceReviewSuccess"
+when
+    $e: Event(type == "ComplianceReview", originator == "regulatoryOfficer", status == "Success")
+    eval(ropRegulatoryOfficer.matchesObligation(complianceReview))
+then
+    ropRegulatoryOfficer.removeObligation(complianceReview);
+    ropRegulatoryOfficer.addObligation("RegulatoryApproval", regulatoryApproval, null, "72h");
+end
+
+// R7: Regulatory Compliance Review - Otherwise path
+rule "R7RegulatoryComplianceReviewOtherwise"
+when
+    $e: Event(type == "ComplianceReview")
+    eval(!($e.getOriginator().equals("regulatoryOfficer") && ropRegulatoryOfficer.matchesObligation(complianceReview)))
+then
+    engine.terminate("BizFail");
+end
+
+// R8: Dataset Approval Compliance - Success path
+rule "R8DatasetApprovalComplianceSuccess"
+when
+    $e: Event(type == "RegulatoryApproval", originator == "regulatoryOfficer", status == "Success")
+    eval(ropRegulatoryOfficer.matchesObligation(regulatoryApproval))
+    eval(engine.happened("QualityAssessment", "qualityAssessor", null, "Success", null))
+    eval(engine.happened("BiasDetection", "biasAuditor", null, "Success", null))
+    eval(engine.happened("DataValidation", null, null, "Success", null))
+then
+    ropRegulatoryOfficer.removeObligation(regulatoryApproval);
+    engine.terminate("Success");
+end
+
+// R8: Dataset Approval Compliance - Otherwise path
+rule "R8DatasetApprovalComplianceOtherwise"
+when
+    $e: Event(type == "RegulatoryApproval")
+    eval(!($e.getOriginator().equals("regulatoryOfficer") && ropRegulatoryOfficer.matchesObligation(regulatoryApproval) &&
+           engine.happened("QualityAssessment", "qualityAssessor", null, "Success", null) &&
+           engine.happened("BiasDetection", "biasAuditor", null, "Success", null) &&
+           engine.happened("DataValidation", null, null, "Success", null)))
+then
+    engine.terminate("BizFail");
+end
+
+// R9: Continuous Monitoring Compliance - Success path
+rule "R9ContinuousMonitoringComplianceSuccess"
+when
+    $e: Event(type == "DataGovernanceAudit", originator == "dataController", status == "Success")
+    eval(ropDataController.matchesObligation(dataGovernanceAudit))
+then
+    ropDataController.removeObligation(dataGovernanceAudit);
+    ropDataController.addObligation("DataGovernanceAudit", dataGovernanceAudit, null, "90d");
+    ropBiasAuditor.addObligation("FairnessAudit", fairnessAudit, null, "30d");
+end
+
+// R9: Continuous Monitoring Compliance - Otherwise path
+rule "R9ContinuousMonitoringComplianceOtherwise"
+when
+    $e: Event(type == "DataGovernanceAudit")
+    eval(!($e.getOriginator().equals("dataController") && ropDataController.matchesObligation(dataGovernanceAudit)))
+then
+    engine.terminate("BizFail");
+end
+
+// R10: Compliance Timeout Management
+rule "R10ComplianceTimeoutManagement"
+when
+    $e: Event(type in ("QualityAssessmentTimeout", "DataValidationTimeout", "BiasDetectionTimeout", "ComplianceReviewTimeout"))
+    eval($e.getOriginator() in ("qualityAssessor", "biasAuditor", "regulatoryOfficer"))
+then
+    ropRegulatoryOfficer.addObligation("ComplianceReview", complianceReview, null, "2h");
+    ropDataProcessor.addProhibition("DataPreparationCompliance");
+    ropDataProcessor.addProhibition("DataCollection");
+end
+
+// R11: Emergency Incident Response - Data Validation failures
+rule "R11EmergencyIncidentResponseDataValidation"
+when
+    $e: Event(type == "DataValidation", status == "BizFail")
+    eval(engine.countHappened("DataValidation", null, null, "BizFail", null) >= 3)
+then
+    ropDataProcessor.addProhibition("DataCollection");
+    ropDataProcessor.addProhibition("DataPreparationCompliance");
+    ropRegulatoryOfficer.addObligation("ComplianceReview", complianceReview, null, "1h");
+    engine.terminate("BizFail");
+end
+
+// R11: Emergency Incident Response - Bias Detection failures
+rule "R11EmergencyIncidentResponseBiasDetection"
+when
+    $e: Event(type == "BiasDetection", status == "BizFail")
+    eval(engine.countHappened("BiasDetection", null, null, "BizFail", null) >= 1)
+then
+    ropDataProcessor.addProhibition("DataCollection");
+    ropDataProcessor.addProhibition("DataPreparationCompliance");
+    ropRegulatoryOfficer.addObligation("ComplianceReview", complianceReview, null, "1h");
+    engine.terminate("BizFail");
+end
+
+// R11: Emergency Incident Response - Quality Assessment failures
+rule "R11EmergencyIncidentResponseQualityAssessment"
+when
+    $e: Event(type == "QualityAssessment", status == "BizFail")
+    eval(engine.countHappened("QualityAssessment", null, null, "BizFail", null) >= 2)
+then
+    ropDataProcessor.addProhibition("DataCollection");
+    ropDataProcessor.addProhibition("DataPreparationCompliance");
+    ropRegulatoryOfficer.addObligation("ComplianceReview", complianceReview, null, "1h");
+    engine.terminate("BizFail");
+end
+
+// R12: Special Category Data Protection - Success path
+rule "R12SpecialCategoryDataProtectionSuccess"
+when
+    $e: Event(type in ("DataCollection", "DataAnnotation", "DataLabelling"), originator == "dataProcessor", status == "Success")
+then
+    ropRegulatoryOfficer.addObligation("SpecialCategoryDataReview", specialCategoryDataReview, null, "24h");
+    ropDataProcessor.addObligation("AuditTrailCreation", auditTrailCreation, null, "4h");
+end
+
+// R12: Special Category Data Protection - Otherwise path
+rule "R12SpecialCategoryDataProtectionOtherwise"
+when
+    $e: Event(type in ("DataCollection", "DataAnnotation", "DataLabelling"))
+    eval(!($e.getOriginator().equals("dataProcessor") && $e.getStatus().equals("Success")))
+then
+    ropRegulatoryOfficer.addObligation("ComplianceReview", complianceReview, null, "2h");
+end

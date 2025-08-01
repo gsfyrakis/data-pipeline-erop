@@ -13,7 +13,7 @@ import com.translator.rulestructureclasses.RopConstraint;
 public class VariableFlagger {
 
     private boolean rolePlayer;
-    private boolean businessOperation;
+    private boolean governanceOperation;
     private boolean compositeObligation;
     //Rule Lhs and Rhs flags
     private boolean ruleLhs;
@@ -42,7 +42,7 @@ public class VariableFlagger {
 
     public VariableFlagger() {
         this.rolePlayer = false;
-        this.businessOperation = false;
+        this.governanceOperation = false;
         this.compositeObligation = false;
         this.eventMatch = false;
         this.ruleName = false;
@@ -158,8 +158,8 @@ public class VariableFlagger {
 
             if (vm.getRules().getLast().getRhsIfs().getElseActionBlock().getAddRemAction().getLast().getRolePlayer().equals("not set")) {
                 vm.getRules().getLast().getRhsIfs().getElseActionBlock().getAddRemAction().getLast().setRolePlayer(variableName);
-            } else if (vm.getRules().getLast().getRhsIfs().getElseActionBlock().getAddRemAction().getLast().getBusinessOp().equals("not set")) {
-                vm.getRules().getLast().getRhsIfs().getElseActionBlock().getAddRemAction().getLast().setBusinessOp(variableName);
+            } else if (vm.getRules().getLast().getRhsIfs().getElseActionBlock().getAddRemAction().getLast().getGovernanceOp().equals("not set")) {
+                vm.getRules().getLast().getRhsIfs().getElseActionBlock().getAddRemAction().getLast().setGovernanceOp(variableName);
             } else if (vm.getRules().getLast().getRhsIfs().getElseActionBlock().getAddRemAction().getLast().getResponder().equals("not set")) {
                 vm.getRules().getLast().getRhsIfs().getElseActionBlock().getAddRemAction().getLast().setResponder(variableName);
             }
@@ -172,8 +172,8 @@ public class VariableFlagger {
 
             if (vm.getRules().getLast().getRhsIfs().getThenActionBlock().getAddRemAction().getLast().getRolePlayer().equals("not set")) {
                 vm.getRules().getLast().getRhsIfs().getThenActionBlock().getAddRemAction().getLast().setRolePlayer(variableName);
-            } else if (vm.getRules().getLast().getRhsIfs().getThenActionBlock().getAddRemAction().getLast().getBusinessOp().equals("not set")) {
-                vm.getRules().getLast().getRhsIfs().getThenActionBlock().getAddRemAction().getLast().setBusinessOp(variableName);
+            } else if (vm.getRules().getLast().getRhsIfs().getThenActionBlock().getAddRemAction().getLast().getGovernanceOp().equals("not set")) {
+                vm.getRules().getLast().getRhsIfs().getThenActionBlock().getAddRemAction().getLast().setGovernanceOp(variableName);
             } else if (vm.getRules().getLast().getRhsIfs().getThenActionBlock().getAddRemAction().getLast().getResponder().equals("not set")) {
                 vm.getRules().getLast().getRhsIfs().getThenActionBlock().getAddRemAction().getLast().setResponder(variableName);
             }
@@ -187,8 +187,8 @@ public class VariableFlagger {
 
             if (vm.getRules().getLast().getRhs().getAddRemAction().getLast().getRolePlayer().equals("not set")) {
                 vm.getRules().getLast().getRhs().getAddRemAction().getLast().setRolePlayer(variableName);
-            } else if (vm.getRules().getLast().getRhs().getAddRemAction().getLast().getBusinessOp().equals("not set")) {
-                vm.getRules().getLast().getRhs().getAddRemAction().getLast().setBusinessOp(variableName);
+            } else if (vm.getRules().getLast().getRhs().getAddRemAction().getLast().getGovernanceOp().equals("not set")) {
+                vm.getRules().getLast().getRhs().getAddRemAction().getLast().setGovernanceOp(variableName);
             } else if (vm.getRules().getLast().getRhs().getAddRemAction().getLast().getResponder().equals("not set")) {
                 vm.getRules().getLast().getRhs().getAddRemAction().getLast().setResponder(variableName);
             }
@@ -234,7 +234,7 @@ public class VariableFlagger {
     }
 
     public void activateBusinessOp() {
-        businessOperation = true;
+        governanceOperation = true;
     }
 
     public void activateOutcomeConstraint() {
@@ -246,7 +246,7 @@ public class VariableFlagger {
     }
 
     public void deactivateBusinessOp() {
-        businessOperation = false;
+        governanceOperation = false;
     }
 
     public void deactivateRuleName() {
@@ -313,17 +313,17 @@ public class VariableFlagger {
     public void addToDeclarationVars(VariablesMemory vm, String variableName) {
         if (rolePlayer) {
             vm.addRolePlayer(variableName);
-        } else if (businessOperation) {
-            vm.addBusinessOp(variableName);
+        } else if (governanceOperation) {
+            vm.addGovernanceOp(variableName);
         } else if (compositeObligation) {
             if (vm.compObligEmpty() || vm.compObligShouldCreateNew()) {
                 vm.addCompOblig(new CompositeObligation());
                 vm.getCompObligs().getLast().setName(variableName);
             } else {
-                if (vm.getCompObligs().getLast().getFirstBo().equals("not set")) {
-                    vm.getCompObligs().getLast().setFirstBo(variableName);
-                } else if (vm.getCompObligs().getLast().getSecondBo().equals("not set")) {
-                    vm.getCompObligs().getLast().setSecondBo(variableName);
+                if (vm.getCompObligs().getLast().getFirstGovOp().equals("not set")) {
+                    vm.getCompObligs().getLast().setFirstGovOp(variableName);
+                } else if (vm.getCompObligs().getLast().getSecondGovOp().equals("not set")) {
+                    vm.getCompObligs().getLast().setSecondGovOp(variableName);
                 }
             }
         }
@@ -449,7 +449,7 @@ public class VariableFlagger {
     }
 
     public boolean isDeclarationVar() {
-        if (businessOperation || rolePlayer || compositeObligation) {
+        if (governanceOperation || rolePlayer || compositeObligation) {
             return true;
         } else {
             return false;
@@ -509,6 +509,12 @@ public class VariableFlagger {
             vm.addTimeDirectAbsoluteTimeRhs(variableName);
         }
 
+    }
+
+    public void addDateTimeInThen(VariablesMemory vm, String variableName) {
+        if (ruleRhs){
+            vm.addDateTimeThen(variableName);
+        }
     }
 
     public void addTimePartialKey(VariablesMemory vm, String variableName) {
@@ -574,6 +580,7 @@ public class VariableFlagger {
             if (ropConstraint) {
                 vm.getRules().getLast().getIfConstraints().getRopConstraints().getLast().setRopSet(variableName);
             } else if (rhsAction && (!ifThen && !ifElse)) {
+                // TODO check why addRemAction list is empty when parsing obligations
                 vm.getRules().getLast().getRhs().getAddRemAction().getLast().setRopSet(variableName);
             } else if (ifThen) {
                 vm.getRules().getLast().getRhsIfs().getThenActionBlock().getAddRemAction().getLast().setRopSet(variableName);
@@ -602,10 +609,27 @@ public class VariableFlagger {
     }
 
     public void addIfStatement(VariablesMemory memory) {
+        // Check if rules list exists and is not empty
+        if (memory.getRules() == null || memory.getRules().isEmpty()) {
+            // Handle the case where no rules exist yet
+            // You may want to log this or initialize a rule if appropriate
+            System.err.println("Warning: Attempting to add if statement but no rules exist in memory");
+            return;
+        }
+
+        // Check if the last rule exists and handle the if statement
         if (memory.getRules().getLast().getRhsIfs() == null) {
-            //memory.getRules().getLast().setRhs(new RhsAction());
+            // Ensure RHS exists before setting ifs
+            if (memory.getRules().getLast().getRhs() == null) {
+                // Initialize RHS if it doesn't exist
+                // You'll need to replace 'RhsAction' with the actual class name
+                // memory.getRules().getLast().setRhs(new RhsAction());
+                System.err.println("Warning: RHS is null when trying to add if statement");
+                return;
+            }
             memory.getRules().getLast().getRhs().setIfs(new IfStatement());
         }
+
     }
 
     public void addCondition(VariablesMemory memory) {
@@ -695,13 +719,13 @@ public class VariableFlagger {
 
     public void addRhsRopOperator(VariablesMemory memory, String text) {
         if (rhsAction && (!ifThen && !ifElse)) {
-            memory.getRules().getLast().getRhs().getAddRemAction().getLast().setOperatior(text);
+            memory.getRules().getLast().getRhs().getAddRemAction().getLast().setOperation(text);
         } else if (ifThen) {
-            memory.getRules().getLast().getRhsIfs().getThenActionBlock().getAddRemAction().getLast().setOperatior(text);
+            memory.getRules().getLast().getRhsIfs().getThenActionBlock().getAddRemAction().getLast().setOperation(text);
         } else if (ifElse) {
-            memory.getRules().getLast().getRhsIfs().getElseActionBlock().getAddRemAction().getLast().setOperatior(text);
+            memory.getRules().getLast().getRhsIfs().getElseActionBlock().getAddRemAction().getLast().setOperation(text);
         } else if (rhsActionNoIfs) {
-            memory.getRules().getLast().getRhs().getAddRemAction().getLast().setOperatior(text);
+            memory.getRules().getLast().getRhs().getAddRemAction().getLast().setOperation(text);
         }
     }
 

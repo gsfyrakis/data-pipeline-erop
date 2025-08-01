@@ -10,7 +10,7 @@ import java.io.IOException;
 public class TranslationWriter {
 
     //private String inputFilePath;
-    private File outputFile;
+    private final File outputFile;
     private BufferedWriter bw;
     private FileWriter fw;
 
@@ -34,14 +34,12 @@ public class TranslationWriter {
             this.fw = new FileWriter(outputFile.getAbsoluteFile(), true);
             this.bw = new BufferedWriter(fw);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
 
     private String createOutputFilepath(String inputFilePath) {
-
         String[] filePathAndExtension = inputFilePath.split("\\."); // escape .
         String translationFilePath = filePathAndExtension[0] + "TRANSLATION.txt";
 

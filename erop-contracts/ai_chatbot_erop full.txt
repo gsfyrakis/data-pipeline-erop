@@ -1,0 +1,377 @@
+roleplayer dataController,dataProcessor,qualityAssessor,biasAuditor,regulatoryOfficer;
+businessoperation DataCollection,DataAnnotation,DataLabelling,DataCleaning;
+businessoperation DataUpdating,DataEnrichment,DataAggregation,DataValidation;
+businessoperation QualityAssessment,DatasetSuitabilityReview,DataGapAnalysis;
+businessoperation BiasDetection,BiasMitigation,FairnessAudit,DemographicAnalysis;
+businessoperation ComplianceReview,RegulatoryApproval,DataGovernanceAudit;
+businessoperation SpecialCategoryDataReview,ConsentValidation,DataMinimizationCheck;
+businessoperation ProvenanceDocumentation,DataLineageTracking,AuditTrailCreation;
+compoblig DataPreparationCompliance (DataAnnotation,DataLabelling,DataCleaning,DataUpdating,DataEnrichment,DataAggregation);
+compoblig BiasManagementCompliance (BiasDetection,BiasMitigation,FairnessAudit);
+compoblig QualityAssuranceCompliance (QualityAssessment,DatasetSuitabilityReview,DataGapAnalysis);
+compoblig GovernanceCompliance (ComplianceReview,RegulatoryApproval,DataGovernanceAudit);
+
+rule "R1DataCollectionGovernance"
+when
+    e matches (botype == DataCollection, originator == dataProcessor, responder == dataController, outcome == Success)
+then
+    Success:
+        if (DataCollection in dataProcessor.rights)
+        then
+            dataProcessor.obligs += ProvenanceDocumentation("24h");
+            dataProcessor.obligs += ConsentValidation("12h");
+            qualityAssessor.obligs += QualityAssessment("48h");
+            dataProcessor.rights += DataPreparationCompliance("7d");
+        endif
+    Otherwise:
+        regulatoryOfficer.obligs += ComplianceReview("4h");
+end
+
+rule "R1DataLabellingGovernance"
+when
+    e matches (botype == DataLabelling, originator == dataProcessor, responder == qualityAssessor, outcome == Success)
+then
+    Success:
+        if (DataLabelling in dataProcessor.rights)
+        then
+            dataProcessor.obligs += ProvenanceDocumentation("24h");
+            dataProcessor.obligs += ConsentValidation("12h");
+            qualityAssessor.obligs += QualityAssessment("48h");
+            dataProcessor.rights += DataPreparationCompliance("7d");
+        endif
+    Otherwise:
+        regulatoryOfficer.obligs += ComplianceReview("4h");
+end
+
+rule "R2DataAnnotationCompliance"
+when
+    e matches (botype == DataAnnotation, originator == dataProcessor, responder == qualityAssessor, outcome == Success)
+then
+    Success:
+        if (DataPreparationCompliance in dataProcessor.rights)
+        then
+            dataProcessor.obligs += DataLineageTracking("2h");
+            qualityAssessor.obligs += DataValidation("24h");
+            biasAuditor.obligs += BiasDetection("48h");
+        endif
+    TecFail:
+        qualityAssessor.obligs += DataGapAnalysis("4h");
+        regulatoryOfficer.obligs += ComplianceReview("8h");
+    BizFail:
+        dataController.obligs += DataGovernanceAudit("24h");
+end
+
+rule "R2DataLabellingCompliance"
+when
+    e matches (botype == DataLabelling, originator == dataProcessor, responder == qualityAssessor, outcome == Success)
+then
+    Success:
+        if (DataPreparationCompliance in dataProcessor.rights)
+        then
+            dataProcessor.obligs += DataLineageTracking("2h");
+            qualityAssessor.obligs += DataValidation("24h");
+            biasAuditor.obligs += BiasDetection("48h");
+        endif
+    TecFail:
+        qualityAssessor.obligs += DataGapAnalysis("4h");
+        regulatoryOfficer.obligs += ComplianceReview("8h");
+    BizFail:
+        dataController.obligs += DataGovernanceAudit("24h");
+end
+
+rule "R2DataCleaningCompliance"
+when
+    e matches (botype == DataCleaning, originator == dataProcessor, responder == qualityAssessor, outcome == Success)
+then
+    Success:
+        if (DataPreparationCompliance in dataProcessor.rights)
+        then
+            dataProcessor.obligs += DataLineageTracking("2h");
+            qualityAssessor.obligs += DataValidation("24h");
+        endif
+    TecFail:
+        qualityAssessor.obligs += DataGapAnalysis("4h");
+        regulatoryOfficer.obligs += ComplianceReview("8h");
+    BizFail:
+        dataController.obligs += DataGovernanceAudit("24h");
+end
+
+rule "R2DataUpdatingCompliance"
+when
+    e matches (botype == DataUpdating, originator == dataProcessor, responder == dataController, outcome == Success)
+then
+    Success:
+        if (DataPreparationCompliance in dataProcessor.rights)
+        then
+            dataProcessor.obligs += DataLineageTracking("2h");
+            qualityAssessor.obligs += DataValidation("24h");
+        endif
+    TecFail:
+        qualityAssessor.obligs += DataGapAnalysis("4h");
+        regulatoryOfficer.obligs += ComplianceReview("8h");
+    BizFail:
+        dataController.obligs += DataGovernanceAudit("24h");
+end
+
+rule "R2DataEnrichmentCompliance"
+when
+    e matches (botype == DataEnrichment, originator == dataProcessor, responder == qualityAssessor, outcome == Success)
+then
+    Success:
+        if (DataPreparationCompliance in dataProcessor.rights)
+        then
+            dataProcessor.obligs += DataLineageTracking("2h");
+            qualityAssessor.obligs += DataValidation("24h");
+        endif
+    TecFail:
+        qualityAssessor.obligs += DataGapAnalysis("4h");
+        regulatoryOfficer.obligs += ComplianceReview("8h");
+    BizFail:
+        dataController.obligs += DataGovernanceAudit("24h");
+end
+
+rule "R2DataAggregationCompliance"
+when
+    e matches (botype == DataAggregation, originator == dataProcessor, responder == dataController, outcome == Success)
+then
+    Success:
+        if (DataPreparationCompliance in dataProcessor.rights)
+        then
+            dataProcessor.obligs += DataLineageTracking("2h");
+            qualityAssessor.obligs += DataValidation("24h");
+        endif
+    TecFail:
+        qualityAssessor.obligs += DataGapAnalysis("4h");
+        regulatoryOfficer.obligs += ComplianceReview("8h");
+    BizFail:
+        dataController.obligs += DataGovernanceAudit("24h");
+end
+
+rule "R3QualityAssessmentCompliance"
+when
+    e matches (botype == QualityAssessment, originator == qualityAssessor, responder == dataProcessor, outcome == Success)
+then
+    Success:
+        if (QualityAssessment in qualityAssessor.obligs)
+        then
+            qualityAssessor.obligs -= QualityAssessment;
+            qualityAssessor.obligs += DatasetSuitabilityReview("24h");
+            biasAuditor.rights += BiasManagementCompliance("5d");
+        endif
+    Otherwise:
+        qualityAssessor.obligs += DataGapAnalysis("12h");
+        dataProcessor.prohibs += DataPreparationCompliance;
+end
+
+rule "R4BiasManagementCompliance"
+when
+    e matches (botype == BiasDetection, originator == biasAuditor, responder == dataProcessor, outcome == Success)
+then
+    Success:
+        if (BiasDetection in biasAuditor.obligs)
+        then
+            biasAuditor.obligs -= BiasDetection;
+            biasAuditor.obligs += DemographicAnalysis("48h");
+            if (happened(BiasDetection, biasAuditor, *, Success, *) && counthappened(BiasDetection, biasAuditor, *, Success, *) >= 1)
+            then
+                biasAuditor.obligs += BiasMitigation("72h");
+            endif
+        endif
+    Otherwise:
+        terminate("BizFail");
+end
+
+rule "R5SpecialCategoryDataCompliance"
+when
+    e matches (botype == SpecialCategoryDataReview, originator == regulatoryOfficer, responder == dataProcessor, outcome == Success)
+then
+    Success:
+        if (SpecialCategoryDataReview in regulatoryOfficer.obligs)
+        then
+            regulatoryOfficer.obligs -= SpecialCategoryDataReview;
+            dataProcessor.obligs += DataMinimizationCheck("24h");
+            biasAuditor.obligs += FairnessAudit("48h");
+            dataController.obligs += AuditTrailCreation("12h");
+        endif
+    Otherwise:
+        terminate("BizFail");
+end
+
+rule "R6DataGapAnalysisCompliance"
+when
+    e matches (botype == DataGapAnalysis, originator == qualityAssessor, responder == dataController, outcome == Success)
+then
+    Success:
+        if (DataGapAnalysis in qualityAssessor.obligs)
+        then
+            qualityAssessor.obligs -= DataGapAnalysis;
+            if (counthappened(DataGapAnalysis, qualityAssessor, *, Success, *) >= 1)
+            then
+                dataController.rights += DataCollection("30d");
+                dataProcessor.rights += DataPreparationCompliance("7d");
+                dataProcessor.prohibs -= DataPreparationCompliance;
+            endif
+        endif
+    Otherwise:
+        dataController.obligs += DataGovernanceAudit("48h");
+end
+
+rule "R7RegulatoryComplianceReview"
+when
+    e matches (botype == ComplianceReview, originator == regulatoryOfficer, responder == dataController, outcome == Success)
+then
+    Success:
+        if (ComplianceReview in regulatoryOfficer.obligs)
+        then
+            regulatoryOfficer.obligs -= ComplianceReview;
+            regulatoryOfficer.obligs += RegulatoryApproval("72h");
+        endif
+    Otherwise:
+        terminate("BizFail");
+end
+
+rule "R8DatasetApprovalCompliance"
+when
+    e matches (botype == RegulatoryApproval, originator == regulatoryOfficer, responder == dataController, outcome == Success)
+then
+    Success:
+        if (RegulatoryApproval in regulatoryOfficer.obligs 
+            && happened(QualityAssessment, qualityAssessor, *, Success, *)
+            && happened(BiasDetection, biasAuditor, *, Success, *)
+            && happened(DataValidation, *, *, Success, *))
+        then
+            regulatoryOfficer.obligs -= RegulatoryApproval;
+            terminate("Success");
+        endif
+    Otherwise:
+        terminate("BizFail");
+end
+
+rule "R9ContinuousMonitoringCompliance"
+when
+    e matches (botype == DataGovernanceAudit, originator == dataController, responder == regulatoryOfficer, outcome == Success)
+then
+    Success:
+        if (DataGovernanceAudit in dataController.obligs)
+        then
+            dataController.obligs -= DataGovernanceAudit;
+            dataController.obligs += DataGovernanceAudit("90d");
+            biasAuditor.obligs += FairnessAudit("30d");
+        endif
+    Otherwise:
+        terminate("BizFail");
+end
+
+rule "R10QualityAssessmentTimeoutManagement"
+when
+    e matches (botype == QualityAssessmentTimeout, originator == qualityAssessor, responder == dataProcessor, outcome == TecFail)
+then
+    regulatoryOfficer.obligs += ComplianceReview("2h");
+    dataProcessor.prohibs += DataPreparationCompliance;
+    dataProcessor.prohibs += DataCollection;
+end
+
+rule "R10DataValidationTimeoutManagement"
+when
+    e matches (botype == DataValidationTimeout, originator == qualityAssessor, responder == dataProcessor, outcome == TecFail)
+then
+    regulatoryOfficer.obligs += ComplianceReview("2h");
+    dataProcessor.prohibs += DataPreparationCompliance;
+    dataProcessor.prohibs += DataCollection;
+end
+
+rule "R10BiasDetectionTimeoutManagement"
+when
+    e matches (botype == BiasDetectionTimeout, originator == biasAuditor, responder == dataProcessor, outcome == TecFail)
+then
+    regulatoryOfficer.obligs += ComplianceReview("2h");
+    dataProcessor.prohibs += DataPreparationCompliance;
+    dataProcessor.prohibs += DataCollection;
+end
+
+rule "R10ComplianceReviewTimeoutManagement"
+when
+    e matches (botype == ComplianceReviewTimeout, originator == regulatoryOfficer, responder == dataController, outcome == TecFail)
+then
+    regulatoryOfficer.obligs += ComplianceReview("2h");
+    dataProcessor.prohibs += DataPreparationCompliance;
+    dataProcessor.prohibs += DataCollection;
+end
+
+rule "R11EmergencyDataValidationResponse"
+when
+    e matches (botype == DataValidation, originator == qualityAssessor, responder == dataProcessor, outcome == BizFail)
+then
+    BizFail:
+        if (counthappened(DataValidation, *, *, BizFail, *) >= 3)
+        then
+            // Immediate suspension of all data processing
+            dataProcessor.prohibs += DataCollection;
+            dataProcessor.prohibs += DataPreparationCompliance;
+            regulatoryOfficer.obligs += ComplianceReview("1h");
+            terminate("BizFail");
+        endif
+end
+
+rule "R11EmergencyBiasDetectionResponse"
+when
+    e matches (botype == BiasDetection, originator == biasAuditor, responder == dataProcessor, outcome == BizFail)
+then
+    BizFail:
+        if (counthappened(BiasDetection, *, *, BizFail, *) >= 1)
+        then
+            // Immediate suspension of all data processing
+            dataProcessor.prohibs += DataCollection;
+            dataProcessor.prohibs += DataPreparationCompliance;
+            regulatoryOfficer.obligs += ComplianceReview("1h");
+            terminate("BizFail");
+        endif
+end
+
+rule "R11EmergencyQualityAssessmentResponse"
+when
+    e matches (botype == QualityAssessment, originator == qualityAssessor, responder == dataProcessor, outcome == BizFail)
+then
+    BizFail:
+        if (counthappened(QualityAssessment, *, *, BizFail, *) >= 2)
+        then
+            // Immediate suspension of all data processing
+            dataProcessor.prohibs += DataCollection;
+            dataProcessor.prohibs += DataPreparationCompliance;
+            regulatoryOfficer.obligs += ComplianceReview("1h");
+            terminate("BizFail");
+        endif
+end
+
+rule "R12DataCollectionProtection"
+when
+    e matches (botype == DataCollection, originator == dataProcessor, responder == dataController, outcome == Success)
+then
+    Success:
+        regulatoryOfficer.obligs += SpecialCategoryDataReview("24h");
+        dataProcessor.obligs += AuditTrailCreation("4h");
+    Otherwise:
+        regulatoryOfficer.obligs += ComplianceReview("2h");
+end
+
+rule "R12DataAnnotationProtection"
+when
+    e matches (botype == DataAnnotation, originator == dataProcessor, responder == qualityAssessor, outcome == Success)
+then
+    Success:
+        regulatoryOfficer.obligs += SpecialCategoryDataReview("24h");
+        dataProcessor.obligs += AuditTrailCreation("4h");
+    Otherwise:
+        regulatoryOfficer.obligs += ComplianceReview("2h");
+end
+
+rule "R12DataLabellingProtection"
+when
+    e matches (botype == DataLabelling, originator == dataProcessor, responder == qualityAssessor, outcome == Success)
+then
+    Success:
+        regulatoryOfficer.obligs += SpecialCategoryDataReview("24h");
+        dataProcessor.obligs += AuditTrailCreation("4h");
+    Otherwise:
+        regulatoryOfficer.obligs += ComplianceReview("2h");
+end

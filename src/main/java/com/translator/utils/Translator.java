@@ -1,20 +1,10 @@
 package com.translator.utils;
 
 import java.util.LinkedList;
+import java.util.Objects;
 
 import com.translator.antlr.TranslationWriter;
-import com.translator.rulestructureclasses.AddOrRemoveAction;
-import com.translator.rulestructureclasses.Constraint;
-import com.translator.rulestructureclasses.EventMatchCondition;
-import com.translator.rulestructureclasses.HistoricalQuery;
-import com.translator.rulestructureclasses.OutcomeConstraint;
-import com.translator.rulestructureclasses.ResetAction;
-import com.translator.rulestructureclasses.RhsActionNoIfs;
-import com.translator.rulestructureclasses.RolePlayerConstraint;
-import com.translator.rulestructureclasses.RopConstraint;
-import com.translator.rulestructureclasses.Rule;
-import com.translator.rulestructureclasses.TimeDirectComparison;
-import com.translator.rulestructureclasses.TimePartialComparison;
+import com.translator.rulestructureclasses.*;
 
 public class Translator {
     private VariablesMemory vm;
@@ -36,16 +26,24 @@ public class Translator {
         includeImports();
         translateRPdeclarations();
         translateBOdeclarations();
+        translateCOdeclarations();
         writer.writeNewLine();
         translateRules();
     }
 
+    private void translateCOdeclarations() {
+        for (CompositeObligation co : vm.getCompObligs()) {
+            writer.writeToTranslationFile("global GovernanceOperation[] " + firstCharToLower(co.getName()) + ";");
+            writer.writeNewLine();
+        }
+    }
+
     private void includeImports() {
-        writer.writeToTranslationFile("package BuyerStoreContractEx");
+        writer.writeToTranslationFile("package GovernanceContract");
         writer.writeNewLine();
-        writer.writeToTranslationFile("import uk.ac.ncl.erop.*;");
+        writer.writeToTranslationFile("import uk.ac.tees.erop.*;");
         writer.writeNewLine();
-        writer.writeToTranslationFile("import  uk.ac.ncl.logging.CCCLogger;");
+        writer.writeToTranslationFile("import  uk.ac.tees.logging.CCCLogger;");
         writer.writeNewLine();
         writer.writeNewLine();
     }
@@ -60,8 +58,8 @@ public class Translator {
     }
 
     private void translateBOdeclarations() {
-        for (String s : vm.getBusinessOps()) {
-            writer.writeToTranslationFile("global BusinessOperation " + firstCharToLower(s) + ";");
+        for (String s : vm.getGovernanceOps()) {
+            writer.writeToTranslationFile("global GovernanceOperation " + firstCharToLower(s) + ";");
             writer.writeNewLine();
         }
     }
@@ -87,11 +85,11 @@ public class Translator {
                     translateTimePartialComparisons(rulePlusIf.getConstraints().getTimePartialComparisons(), rulePlusIf.getEvent());
                     translateHistoricalQueries(rulePlusIf.getConstraints().getHistoricalQueries());
                     translateRopConstraints(rulePlusIf.getConstraints().getRopConstraints());
-
+//
                     translateThen(rulePlusIf);
-
+//
                     translateIfRhs(rulePlusIf.getRhsIfs().getThenActionBlock());
-                    translateRuleRhs(rulePlusIf);
+//                    translateRuleRhs(rulePlusIf);
 
                     writer.writeToTranslationFile("end");
                     writer.writeNewLine();
@@ -177,7 +175,7 @@ public class Translator {
     }
 
     private void translateResetActionIfThen(RhsActionNoIfs thenActionBlock) {
-        if (!thenActionBlock.getResetActions().isEmpty()) {
+        if (thenActionBlock != null && !thenActionBlock.getResetActions().isEmpty()) {
             for (ResetAction reset : thenActionBlock.getResetActions()) {
                 writer.writeToTranslationFile("rop" + firstCharToUpper(reset.getRopSet()) + ".reset()");
                 writer.writeNewLine();
@@ -186,7 +184,7 @@ public class Translator {
     }
 
     private void translateOutcomeManipulationsSet(RhsActionNoIfs thenActionBlock) {
-        if (!thenActionBlock.getOutcomes().isEmpty()) {
+        if (thenActionBlock != null && !thenActionBlock.getOutcomes().isEmpty()) {
             for (OutcomeConstraint outcomeManipulation : thenActionBlock.getOutcomes()) {
                 writer.writeToTranslationFile(firstCharToLower(outcomeManipulation.getEvent()) + "." + lookup.getOutcomeSet(outcomeManipulation.getOutcome()) + " " + "(" + outcomeManipulation.getValue() + ")");
                 writer.writeNewLine();
@@ -196,14 +194,14 @@ public class Translator {
 
 
     private void translateOutome(RhsActionNoIfs thenActionBlock) {
-        if (thenActionBlock.isThereOutcome()) {
+        if (thenActionBlock != null && thenActionBlock.isThereOutcome()) {
             writer.writeToTranslationFile(thenActionBlock.getOutcome());
             writer.writeNewLine();
         }
     }
 
     private void translatePassAction(RhsActionNoIfs thenActionBlock) {
-        if (thenActionBlock.isTherePass()) {
+        if (thenActionBlock != null && thenActionBlock.isTherePass()) {
             writer.writeToTranslationFile(thenActionBlock.getPassaction());
             writer.writeNewLine();
         }
@@ -242,16 +240,20 @@ public class Translator {
     private void translateAddRemActionsRuleRhs(Rule r) {
         if (r.getRhs().isThereAddRemAction()) {
             for (AddOrRemoveAction action : r.getRhs().getAddRemAction()) {
-                if (action.getOperatior().equals("+=")) {
-                    if (vm.isCompositeOblig(action.getBusinessOp())) {
-                        writer.writeToTranslationFile("BusinessOperation[] bos = {" + firstCharToLower(vm.getFirstBoFor(action.getBusinessOp())) + ", " + firstCharToLower(vm.getSecondBoFor(action.getBusinessOp())) + "};");
+                if (action.getOperation().equals("+=")) {
+                    if (vm.isCompositeOblig(action.getGovernanceOp())) {
+                        writer.writeToTranslationFile("GovernanceOperation[] bos = {" + firstCharToLower(vm.getFirstGovOpFor(action.getGovernanceOp())) + ", " + firstCharToLower(vm.getSecondGovOpFor(action.getGovernanceOp())) + "};");
                         writer.writeNewLine();
-                        writer.writeToTranslationFile("rop" + firstCharToUpper(action.getRolePlayer() + ".add" + lookup.getRopManipulationSet(action.getRopSet()) + "(" + firstCharToLower(action.getBusinessOp()) + ", bos," + action.getResponder() + ")"));
+                        writer.writeToTranslationFile("rop" + firstCharToUpper(action.getRolePlayer() + ".add" + lookup.getRopManipulationSet(action.getRopSet()) + "(" + firstCharToLower(action.getGovernanceOp()) + ", bos," + action.getResponder() + ")"));
                     } else {
-                        writer.writeToTranslationFile("rop" + firstCharToUpper(action.getRolePlayer() + ".add" + lookup.getRopManipulationSet(action.getRopSet()) + "(" + firstCharToLower(action.getBusinessOp()) + ", " + action.getResponder() + ")"));
+                        if (!Objects.equals(action.getDateTime(), "")){
+                            writer.writeToTranslationFile("rop" + firstCharToUpper(action.getRolePlayer() + ".add" + lookup.getRopManipulationSet(action.getRopSet()) + "(" + firstCharToLower(action.getGovernanceOp()) + ", " + action.getResponder() +"," + action.getDateTime() + ")"));
+                        } else {
+                            writer.writeToTranslationFile("rop" + firstCharToUpper(action.getRolePlayer() + ".add" + lookup.getRopManipulationSet(action.getRopSet()) + "(" + firstCharToLower(action.getGovernanceOp()) + ", " + action.getResponder() + ")"));
+                        }
                     }
-                } else if (action.getOperatior().equals("-=")) {
-                    writer.writeToTranslationFile("rop" + firstCharToUpper(action.getRolePlayer() + ".remove" + lookup.getRopManipulationSet(action.getRopSet()) + "(" + firstCharToLower(action.getBusinessOp()) + ", " + action.getResponder() + ")"));
+                } else if (action.getOperation().equals("-=")) {
+                    writer.writeToTranslationFile("rop" + firstCharToUpper(action.getRolePlayer() + ".remove" + lookup.getRopManipulationSet(action.getRopSet()) + "(" + firstCharToLower(action.getGovernanceOp()) + ", " + action.getResponder() + ")"));
                 }
                 writer.writeNewLine();
 
@@ -261,16 +263,19 @@ public class Translator {
     }
 
     private void translateAddRemActionsRuleIfThen(RhsActionNoIfs rhs) {
-        if (rhs.isThereAddRemAction()) {
+        if (rhs != null && rhs.isThereAddRemAction()) {
             for (AddOrRemoveAction action : rhs.getAddRemAction()) {
-                if (action.getOperatior().equals("+=")) {
-                    if (vm.isCompositeOblig(action.getBusinessOp())) {
-                        writer.writeToTranslationFile("BusinessOperation[] bos = {" + firstCharToLower(vm.getFirstBoFor(action.getBusinessOp())) + ", " + firstCharToLower(vm.getSecondBoFor(action.getBusinessOp())) + "};");
+                if (action.getOperation().equals("+=")) {
+                    if (vm.isCompositeOblig(action.getGovernanceOp())) {
+                        writer.writeToTranslationFile("GovernanceOperation[] bos = {" + firstCharToLower(vm.getFirstGovOpFor(action.getGovernanceOp())) + ", " + firstCharToLower(vm.getSecondGovOpFor(action.getGovernanceOp())) + "};");
                         writer.writeNewLine();
                     }
-                    writer.writeToTranslationFile("rop" + firstCharToUpper(action.getRolePlayer() + ".add" + lookup.getRopManipulationSet(action.getRopSet()) + "(" + action.getBusinessOp() + "," + action.getResponder() + ")"));
-                } else if (action.getOperatior().equals("-=")) {
-                    writer.writeToTranslationFile("rop" + firstCharToUpper(action.getRolePlayer() + ".remove" + lookup.getRopManipulationSet(action.getRopSet()) + "(" + action.getBusinessOp() + "," + action.getResponder() + ")"));
+                    if (!Objects.equals(action.getDateTime(), "")){
+                        writer.writeToTranslationFile("rop" + firstCharToUpper(action.getRolePlayer() + ".add" + lookup.getRopManipulationSet(action.getRopSet()) + "(" + firstCharToLower(action.getGovernanceOp()) + ", " + action.getResponder() +"," + action.getDateTime() + ")"));
+                    } else {
+                        writer.writeToTranslationFile("rop" + firstCharToUpper(action.getRolePlayer() + ".add" + lookup.getRopManipulationSet(action.getRopSet()) + "(" + firstCharToLower(action.getGovernanceOp()) + ", " + action.getResponder() + ")"));
+                    }                } else if (action.getOperation().equals("-=")) {
+                    writer.writeToTranslationFile("rop" + firstCharToUpper(action.getRolePlayer() + ".remove" + lookup.getRopManipulationSet(action.getRopSet()) + "(" + action.getGovernanceOp() + "," + action.getResponder() + ")"));
                 }
                 writer.writeNewLine();
             }
@@ -321,19 +326,42 @@ public class Translator {
     }
 
     //Translate RolePlayers Constraints
+//    private void translateRolePlayerConstraints(LinkedList<RolePlayerConstraint> rpc, Rule r, StringBuilder sb) {
+//        if (!rpc.isEmpty()) {
+//            for (RolePlayerConstraint rolePlayerConstraint : rpc) {
+//                sb.append(r.getEvent() + "." + rolePlayerConstraint.getIssuer() + " " + rolePlayerConstraint.getOperator() + " " + "\"" + rolePlayerConstraint.getValue() + "\"" + ",");
+//            }
+//            writer.writeToTranslationFile(sb.toString().substring(0, sb.toString().length() - 1) + ")");
+//            writer.writeNewLine();
+//        } else {
+//            writer.writeToTranslationFile(sb.toString().substring(0, sb.toString().length() - 1) + ")");
+//            writer.writeNewLine();
+//        }
+//    }
+
+    //Translate RolePlayers Constraints
     private void translateRolePlayerConstraints(LinkedList<RolePlayerConstraint> rpc, Rule r, StringBuilder sb) {
         if (!rpc.isEmpty()) {
             for (RolePlayerConstraint rolePlayerConstraint : rpc) {
                 sb.append(r.getEvent() + "." + rolePlayerConstraint.getIssuer() + " " + rolePlayerConstraint.getOperator() + " " + "\"" + rolePlayerConstraint.getValue() + "\"" + ",");
             }
-            writer.writeToTranslationFile(sb.toString().substring(0, sb.toString().length() - 1) + ")");
+            // Check if sb has content before removing last character
+            if (sb.length() > 0) {
+                writer.writeToTranslationFile(sb.toString().substring(0, sb.toString().length() - 1) + ")");
+            } else {
+                writer.writeToTranslationFile(")");
+            }
             writer.writeNewLine();
         } else {
-            writer.writeToTranslationFile(sb.toString().substring(0, sb.toString().length() - 1) + ")");
+            // Check if sb has content before removing last character
+            if (sb.length() > 0) {
+                writer.writeToTranslationFile(sb.toString().substring(0, sb.toString().length() - 1) + ")");
+            } else {
+                writer.writeToTranslationFile(")");
+            }
             writer.writeNewLine();
         }
     }
-
     private void translateRolePlayerConstraints(LinkedList<RolePlayerConstraint> rpConstraints, LinkedList<RolePlayerConstraint> negatedRp, Rule r, StringBuilder sb) {
         if (!rpConstraints.isEmpty()) {
             for (RolePlayerConstraint rolePlayerConstraint : rpConstraints) {

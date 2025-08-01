@@ -2,20 +2,20 @@ package com.translator.rulestructureclasses;
 
 public class CompositeObligation {
     private String name;
-    private String firstBo;
-    private String secondBo;
+    private String firstGovOp;
+    private String secondGovOp;
 
 
     public CompositeObligation() {
         this.name = "not set";
-        this.firstBo = "not set";
-        this.secondBo = "not set";
+        this.firstGovOp = "not set";
+        this.secondGovOp = "not set";
     }
 
     public CompositeObligation(String name, String first, String second) {
         this.name = name;
-        this.firstBo = first;
-        this.secondBo = second;
+        this.firstGovOp = first;
+        this.secondGovOp = second;
     }
 
     public String getName() {
@@ -26,20 +26,20 @@ public class CompositeObligation {
         this.name = name;
     }
 
-    public String getFirstBo() {
-        return firstBo;
+    public String getFirstGovOp() {
+        return firstGovOp;
     }
 
-    public void setFirstBo(String firstBo) {
-        this.firstBo = firstBo;
+    public void setFirstGovOp(String firstGovOp) {
+        this.firstGovOp = firstGovOp;
     }
 
-    public String getSecondBo() {
-        return secondBo;
+    public String getSecondGovOp() {
+        return secondGovOp;
     }
 
-    public void setSecondBo(String secondBo) {
-        this.secondBo = secondBo;
+    public void setSecondGovOp(String secondGovOp) {
+        this.secondGovOp = secondGovOp;
     }
 
 }

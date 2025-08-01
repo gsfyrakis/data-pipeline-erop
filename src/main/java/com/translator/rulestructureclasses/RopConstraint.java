@@ -2,32 +2,32 @@ package com.translator.rulestructureclasses;
 
 public class RopConstraint {
 
-    private String businessOp;
+    private String governanceOp;
     private String operator;
     private String roleplayer;
     private String ropSet;
 
     public RopConstraint() {
-        this.businessOp = "not set";
+        this.governanceOp = "not set";
         this.operator = "not set";
         this.roleplayer = "not set";
         this.ropSet = "not set";
     }
 
 
-    public RopConstraint(String businessOp, String operator, String roleplayer, String ropSet) {
-        this.businessOp = businessOp;
+    public RopConstraint(String governanceOp, String operator, String roleplayer, String ropSet) {
+        this.governanceOp = governanceOp;
         this.operator = operator;
         this.roleplayer = roleplayer;
         this.ropSet = ropSet;
     }
 
     public String getBusinessOp() {
-        return businessOp;
+        return governanceOp;
     }
 
-    public void setBusinessOp(String businessOp) {
-        this.businessOp = businessOp;
+    public void setBusinessOp(String governanceOp) {
+        this.governanceOp = governanceOp;
     }
 
     public String getOperator() {
@@ -55,7 +55,7 @@ public class RopConstraint {
     }
 
     public boolean shouldCreateNew() {
-        if (businessOp.equals("not set") || roleplayer.equals("not set")) {
+        if (governanceOp.equals("not set") || roleplayer.equals("not set")) {
             return false;
         }
         return true;

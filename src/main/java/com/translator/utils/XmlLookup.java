@@ -5,6 +5,7 @@ import java.net.URL;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.TransformerException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -29,6 +30,14 @@ public class XmlLookup {
             this.dBuilder = dbFactory.newDocumentBuilder();
             //this.doc = dBuilder.parse(lookUpFile);
             this.doc = dBuilder.parse(XmlLookup.class.getClassLoader().getResourceAsStream("lookup.xml"));
+
+            // Print XML content using Transformer
+//            javax.xml.transform.TransformerFactory.newInstance()
+//                    .newTransformer()
+//                    .transform(
+//                            new javax.xml.transform.dom.DOMSource(doc),
+//                            new javax.xml.transform.stream.StreamResult(System.out)
+//                    );
 
             //optional, but recommended
             //read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work

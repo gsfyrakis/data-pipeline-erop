@@ -1,1166 +1,1692 @@
-// Generated from Eropcp.g4 by ANTLR 4.4
-package com.translator.antlr;
+ package com.translator.antlr;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-/**
- * This class provides an empty implementation of {@link EropcpListener},
- * which can be extended to create a listener which only needs to handle a subset
- * of the available methods.
- */
-public class EropcpBaseListener implements EropcpListener {
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterRoleplayeridentifyer(@NotNull EropcpParser.RoleplayeridentifyerContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitRoleplayeridentifyer(@NotNull EropcpParser.RoleplayeridentifyerContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterEventmatch(@NotNull EropcpParser.EventmatchContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitEventmatch(@NotNull EropcpParser.EventmatchContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterAbsoluteTime(@NotNull EropcpParser.AbsoluteTimeContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitAbsoluteTime(@NotNull EropcpParser.AbsoluteTimeContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterTimeSpec(@NotNull EropcpParser.TimeSpecContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitTimeSpec(@NotNull EropcpParser.TimeSpecContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterRuleSet(@NotNull EropcpParser.RuleSetContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitRuleSet(@NotNull EropcpParser.RuleSetContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterAttributeConstraint(@NotNull EropcpParser.AttributeConstraintContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitAttributeConstraint(@NotNull EropcpParser.AttributeConstraintContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterDeclarationSection(@NotNull EropcpParser.DeclarationSectionContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitDeclarationSection(@NotNull EropcpParser.DeclarationSectionContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterRulename(@NotNull EropcpParser.RulenameContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitRulename(@NotNull EropcpParser.RulenameContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterRhsActionNoIfs(@NotNull EropcpParser.RhsActionNoIfsContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitRhsActionNoIfs(@NotNull EropcpParser.RhsActionNoIfsContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterDateIdent(@NotNull EropcpParser.DateIdentContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitDateIdent(@NotNull EropcpParser.DateIdentContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterDayKey(@NotNull EropcpParser.DayKeyContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitDayKey(@NotNull EropcpParser.DayKeyContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterAlphanum(@NotNull EropcpParser.AlphanumContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitAlphanum(@NotNull EropcpParser.AlphanumContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterYearIdent(@NotNull EropcpParser.YearIdentContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitYearIdent(@NotNull EropcpParser.YearIdentContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterTimeConstraint(@NotNull EropcpParser.TimeConstraintContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitTimeConstraint(@NotNull EropcpParser.TimeConstraintContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterIfElse(@NotNull EropcpParser.IfElseContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitIfElse(@NotNull EropcpParser.IfElseContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterTimeOperators(@NotNull EropcpParser.TimeOperatorsContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitTimeOperators(@NotNull EropcpParser.TimeOperatorsContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterYearRange(@NotNull EropcpParser.YearRangeContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitYearRange(@NotNull EropcpParser.YearRangeContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterHistoricalQueryOp(@NotNull EropcpParser.HistoricalQueryOpContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitHistoricalQueryOp(@NotNull EropcpParser.HistoricalQueryOpContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterIfThen(@NotNull EropcpParser.IfThenContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitIfThen(@NotNull EropcpParser.IfThenContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterResetaction(@NotNull EropcpParser.ResetactionContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitResetaction(@NotNull EropcpParser.ResetactionContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterBusinessOpDeclaration(@NotNull EropcpParser.BusinessOpDeclarationContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitBusinessOpDeclaration(@NotNull EropcpParser.BusinessOpDeclarationContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterCondition(@NotNull EropcpParser.ConditionContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitCondition(@NotNull EropcpParser.ConditionContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterEventMcond(@NotNull EropcpParser.EventMcondContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitEventMcond(@NotNull EropcpParser.EventMcondContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterMonthRange(@NotNull EropcpParser.MonthRangeContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitMonthRange(@NotNull EropcpParser.MonthRangeContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterHistoricalQuery(@NotNull EropcpParser.HistoricalQueryContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitHistoricalQuery(@NotNull EropcpParser.HistoricalQueryContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterField(@NotNull EropcpParser.FieldContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitField(@NotNull EropcpParser.FieldContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterIfstatement(@NotNull EropcpParser.IfstatementContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitIfstatement(@NotNull EropcpParser.IfstatementContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterRolePlayerConstraintIssuer(@NotNull EropcpParser.RolePlayerConstraintIssuerContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitRolePlayerConstraintIssuer(@NotNull EropcpParser.RolePlayerConstraintIssuerContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterTimePartialComparison(@NotNull EropcpParser.TimePartialComparisonContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitTimePartialComparison(@NotNull EropcpParser.TimePartialComparisonContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterBool(@NotNull EropcpParser.BoolContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitBool(@NotNull EropcpParser.BoolContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterMonthKey(@NotNull EropcpParser.MonthKeyContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitMonthKey(@NotNull EropcpParser.MonthKeyContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterDateRange(@NotNull EropcpParser.DateRangeContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitDateRange(@NotNull EropcpParser.DateRangeContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterSinglerule(@NotNull EropcpParser.SingleruleContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitSinglerule(@NotNull EropcpParser.SingleruleContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterDayOfWeek(@NotNull EropcpParser.DayOfWeekContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitDayOfWeek(@NotNull EropcpParser.DayOfWeekContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterRoleplayerConstraint(@NotNull EropcpParser.RoleplayerConstraintContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitRoleplayerConstraint(@NotNull EropcpParser.RoleplayerConstraintContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterYearKey(@NotNull EropcpParser.YearKeyContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitYearKey(@NotNull EropcpParser.YearKeyContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterPassaction(@NotNull EropcpParser.PassactionContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitPassaction(@NotNull EropcpParser.PassactionContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterContractDocument(@NotNull EropcpParser.ContractDocumentContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitContractDocument(@NotNull EropcpParser.ContractDocumentContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterDateKey(@NotNull EropcpParser.DateKeyContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitDateKey(@NotNull EropcpParser.DateKeyContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterCompobligDeclaration(@NotNull EropcpParser.CompobligDeclarationContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitCompobligDeclaration(@NotNull EropcpParser.CompobligDeclarationContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterRangeOperators(@NotNull EropcpParser.RangeOperatorsContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitRangeOperators(@NotNull EropcpParser.RangeOperatorsContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterBopIdentifier(@NotNull EropcpParser.BopIdentifierContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitBopIdentifier(@NotNull EropcpParser.BopIdentifierContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterDayRange(@NotNull EropcpParser.DayRangeContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitDayRange(@NotNull EropcpParser.DayRangeContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterOutcome(@NotNull EropcpParser.OutcomeContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitOutcome(@NotNull EropcpParser.OutcomeContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterMonthIdent(@NotNull EropcpParser.MonthIdentContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitMonthIdent(@NotNull EropcpParser.MonthIdentContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterTermaction(@NotNull EropcpParser.TermactionContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitTermaction(@NotNull EropcpParser.TermactionContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterTimeDirectComparison(@NotNull EropcpParser.TimeDirectComparisonContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitTimeDirectComparison(@NotNull EropcpParser.TimeDirectComparisonContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterAddRemRopOperator(@NotNull EropcpParser.AddRemRopOperatorContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitAddRemRopOperator(@NotNull EropcpParser.AddRemRopOperatorContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterOutcomeConstraint(@NotNull EropcpParser.OutcomeConstraintContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitOutcomeConstraint(@NotNull EropcpParser.OutcomeConstraintContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterGenericString(@NotNull EropcpParser.GenericStringContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitGenericString(@NotNull EropcpParser.GenericStringContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterDeclaration(@NotNull EropcpParser.DeclarationContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitDeclaration(@NotNull EropcpParser.DeclarationContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterAndOR(@NotNull EropcpParser.AndORContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitAndOR(@NotNull EropcpParser.AndORContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterLhs(@NotNull EropcpParser.LhsContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitLhs(@NotNull EropcpParser.LhsContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterRopConstraint(@NotNull EropcpParser.RopConstraintContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitRopConstraint(@NotNull EropcpParser.RopConstraintContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterRopset(@NotNull EropcpParser.RopsetContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitRopset(@NotNull EropcpParser.RopsetContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterUpalphanum(@NotNull EropcpParser.UpalphanumContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitUpalphanum(@NotNull EropcpParser.UpalphanumContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterRoleplayerDeclaration(@NotNull EropcpParser.RoleplayerDeclarationContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitRoleplayerDeclaration(@NotNull EropcpParser.RoleplayerDeclarationContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterOper(@NotNull EropcpParser.OperContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitOper(@NotNull EropcpParser.OperContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterConstraint(@NotNull EropcpParser.ConstraintContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitConstraint(@NotNull EropcpParser.ConstraintContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterRhs(@NotNull EropcpParser.RhsContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitRhs(@NotNull EropcpParser.RhsContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterRhsaction(@NotNull EropcpParser.RhsactionContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitRhsaction(@NotNull EropcpParser.RhsactionContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterAddRemAction(@NotNull EropcpParser.AddRemActionContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitAddRemAction(@NotNull EropcpParser.AddRemActionContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterEveryRule(@NotNull ParserRuleContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitEveryRule(@NotNull ParserRuleContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void visitTerminal(@NotNull TerminalNode node) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void visitErrorNode(@NotNull ErrorNode node) {
-    }
+
+public class EropcpBaseListener implements EropPatientAIListener {
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterOutcomeConstraintAttr(EropPatientAIParser.OutcomeConstraintAttrContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitOutcomeConstraintAttr(EropPatientAIParser.OutcomeConstraintAttrContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterEventmatch(EropPatientAIParser.EventmatchContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitEventmatch(EropPatientAIParser.EventmatchContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterAddActionLabel(EropPatientAIParser.AddActionLabelContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitAddActionLabel(EropPatientAIParser.AddActionLabelContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterAbsoluteTime(EropPatientAIParser.AbsoluteTimeContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitAbsoluteTime(EropPatientAIParser.AbsoluteTimeContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterRhsactionLabel(EropPatientAIParser.RhsactionLabelContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitRhsactionLabel(EropPatientAIParser.RhsactionLabelContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterTimeConstraintContent(EropPatientAIParser.TimeConstraintContentContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitTimeConstraintContent(EropPatientAIParser.TimeConstraintContentContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterRolePlayerRefId(EropPatientAIParser.RolePlayerRefIdContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitRolePlayerRefId(EropPatientAIParser.RolePlayerRefIdContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterRuleSet(EropPatientAIParser.RuleSetContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitRuleSet(EropPatientAIParser.RuleSetContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterRulename(EropPatientAIParser.RulenameContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitRulename(EropPatientAIParser.RulenameContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+//	@Override
+//	public void enterRemAction(EropPatientAIParser.RemActionContext ctx) {
+//
+//	}
+//
+//	/**
+//	 * @param ctx the parse tree
+//	 */
+//	@Override
+//	public void exitRemAction(EropPatientAIParser.RemActionContext ctx) {
+//
+//	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterTimeInNotInDigit(EropPatientAIParser.TimeInNotInDigitContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitTimeInNotInDigit(EropPatientAIParser.TimeInNotInDigitContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterNotInRopSet(EropPatientAIParser.NotInRopSetContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitNotInRopSet(EropPatientAIParser.NotInRopSetContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterSuccess(EropPatientAIParser.SuccessContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitSuccess(EropPatientAIParser.SuccessContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterStatusGuardBlockRhs(EropPatientAIParser.StatusGuardBlockRhsContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitStatusGuardBlockRhs(EropPatientAIParser.StatusGuardBlockRhsContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+//	@Override
+//	public void enterIfStatement(EropPatientAIParser.IfStatementContext ctx) {
+//
+//	}
+//
+//	/**
+//	 * @param ctx the parse tree
+//	 */
+//	@Override
+//	public void exitIfStatement(EropPatientAIParser.IfStatementContext ctx) {
+//
+//	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterOtherwise(EropPatientAIParser.OtherwiseContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitOtherwise(EropPatientAIParser.OtherwiseContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterTimeConstraintText(EropPatientAIParser.TimeConstraintTextContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitTimeConstraintText(EropPatientAIParser.TimeConstraintTextContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterRolePlayerAsterisk(EropPatientAIParser.RolePlayerAsteriskContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitRolePlayerAsterisk(EropPatientAIParser.RolePlayerAsteriskContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterTimeConstraintAsterisk(EropPatientAIParser.TimeConstraintAsteriskContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitTimeConstraintAsterisk(EropPatientAIParser.TimeConstraintAsteriskContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterOriginator(EropPatientAIParser.OriginatorContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitOriginator(EropPatientAIParser.OriginatorContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterRemactionLabel(EropPatientAIParser.RemactionLabelContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitRemactionLabel(EropPatientAIParser.RemactionLabelContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	public void enterRhsAction(EropPatientAIParser.RhsactionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	public void exitRhsAction(EropPatientAIParser.RhsactionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterAddaction(EropPatientAIParser.AddactionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitAddaction(EropPatientAIParser.AddactionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterCompositeObligation(EropPatientAIParser.CompositeObligationContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitCompositeObligation(EropPatientAIParser.CompositeObligationContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterPassactionLabel(EropPatientAIParser.PassactionLabelContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitPassactionLabel(EropPatientAIParser.PassactionLabelContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+//	@Override
+//	public void enterTermAction(EropPatientAIParser.TermActionContext ctx) {
+//
+//	}
+//
+//	/**
+//	 * @param ctx the parse tree
+//	 */
+//	@Override
+//	public void exitTermAction(EropPatientAIParser.TermActionContext ctx) {
+//
+//	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterComparisonExpressionSimpleCondition(EropPatientAIParser.ComparisonExpressionSimpleConditionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitComparisonExpressionSimpleCondition(EropPatientAIParser.ComparisonExpressionSimpleConditionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterActionResponderIdentifier(EropPatientAIParser.ActionResponderIdentifierContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitActionResponderIdentifier(EropPatientAIParser.ActionResponderIdentifierContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterRelativeTimeSpec(EropPatientAIParser.RelativeTimeSpecContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitRelativeTimeSpec(EropPatientAIParser.RelativeTimeSpecContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterTermactionLabel(EropPatientAIParser.TermactionLabelContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitTermactionLabel(EropPatientAIParser.TermactionLabelContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterDayInNotInWeekDay(EropPatientAIParser.DayInNotInWeekDayContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitDayInNotInWeekDay(EropPatientAIParser.DayInNotInWeekDayContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterIdentifierList(EropPatientAIParser.IdentifierListContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitIdentifierList(EropPatientAIParser.IdentifierListContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterRightsRopSet(EropPatientAIParser.RightsRopSetContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitRightsRopSet(EropPatientAIParser.RightsRopSetContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterBizFailOutcome(EropPatientAIParser.BizFailOutcomeContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitBizFailOutcome(EropPatientAIParser.BizFailOutcomeContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterBooleanConstraintAttr(EropPatientAIParser.BooleanConstraintAttrContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitBooleanConstraintAttr(EropPatientAIParser.BooleanConstraintAttrContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterRhsactionList(EropPatientAIParser.RhsactionListContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitRhsactionList(EropPatientAIParser.RhsactionListContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterBusinessOpDeclaration(EropPatientAIParser.BusinessOpDeclarationContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitBusinessOpDeclaration(EropPatientAIParser.BusinessOpDeclarationContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterConstraints(EropPatientAIParser.ConstraintsContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitConstraints(EropPatientAIParser.ConstraintsContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterHistoricalQuery(EropPatientAIParser.HistoricalQueryContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitHistoricalQuery(EropPatientAIParser.HistoricalQueryContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterHistoricalQuerySimpleCondition(EropPatientAIParser.HistoricalQuerySimpleConditionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitHistoricalQuerySimpleCondition(EropPatientAIParser.HistoricalQuerySimpleConditionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterLogicalOperator(EropPatientAIParser.LogicalOperatorContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitLogicalOperator(EropPatientAIParser.LogicalOperatorContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterIfstatement(EropPatientAIParser.IfstatementContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitIfstatement(EropPatientAIParser.IfstatementContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterNotConditionTerm(EropPatientAIParser.NotConditionTermContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitNotConditionTerm(EropPatientAIParser.NotConditionTermContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterHappened_expression(EropPatientAIParser.Happened_expressionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitHappened_expression(EropPatientAIParser.Happened_expressionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterConditionExpressionTerm(EropPatientAIParser.ConditionExpressionTermContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitConditionExpressionTerm(EropPatientAIParser.ConditionExpressionTermContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterInitFail(EropPatientAIParser.InitFailContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitInitFail(EropPatientAIParser.InitFailContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterRolePlayer(EropPatientAIParser.RolePlayerContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitRolePlayer(EropPatientAIParser.RolePlayerContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterLogicalExpressionSimpleCondition(EropPatientAIParser.LogicalExpressionSimpleConditionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitLogicalExpressionSimpleCondition(EropPatientAIParser.LogicalExpressionSimpleConditionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterSimpleConditionTerm(EropPatientAIParser.SimpleConditionTermContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitSimpleConditionTerm(EropPatientAIParser.SimpleConditionTermContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterIfstatementAction(EropPatientAIParser.IfstatementActionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitIfstatementAction(EropPatientAIParser.IfstatementActionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterStatusGuardBlock(EropPatientAIParser.StatusGuardBlockContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitStatusGuardBlock(EropPatientAIParser.StatusGuardBlockContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterSinglerule(EropPatientAIParser.SingleruleContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitSinglerule(EropPatientAIParser.SingleruleContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterBoTypeLogicalExpression(EropPatientAIParser.BoTypeLogicalExpressionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitBoTypeLogicalExpression(EropPatientAIParser.BoTypeLogicalExpressionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterHistoricalParams(EropPatientAIParser.HistoricalParamsContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitHistoricalParams(EropPatientAIParser.HistoricalParamsContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterInitFailOutcome(EropPatientAIParser.InitFailOutcomeContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitInitFailOutcome(EropPatientAIParser.InitFailOutcomeContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterTecFail(EropPatientAIParser.TecFailContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitTecFail(EropPatientAIParser.TecFailContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterComparisonExpression(EropPatientAIParser.ComparisonExpressionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitComparisonExpression(EropPatientAIParser.ComparisonExpressionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+//	@Override
+//	public void enterPassAction(EropPatientAIParser.PassActionContext ctx) {
+//
+//	}
+//
+//	/**
+//	 * @param ctx the parse tree
+//	 */
+//	@Override
+//	public void exitPassAction(EropPatientAIParser.PassActionContext ctx) {
+//
+//	}
+//
+//	/**
+//	 * @param ctx the parse tree
+//	 */
+//	@Override
+//	public void enterAddAction(EropPatientAIParser.AddActionContext ctx) {
+//
+//	}
+//
+//	/**
+//	 * @param ctx the parse tree
+//	 */
+//	@Override
+//	public void exitAddAction(EropPatientAIParser.AddActionContext ctx) {
+//
+//	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterRopEntity(EropPatientAIParser.RopEntityContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitRopEntity(EropPatientAIParser.RopEntityContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterGovernanceOperation(EropPatientAIParser.GovernanceOperationContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitGovernanceOperation(EropPatientAIParser.GovernanceOperationContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterBizFail(EropPatientAIParser.BizFailContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitBizFail(EropPatientAIParser.BizFailContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterInRopSetSimpleCondition(EropPatientAIParser.InRopSetSimpleConditionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitInRopSetSimpleCondition(EropPatientAIParser.InRopSetSimpleConditionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterRolePlayerConstraintAttr(EropPatientAIParser.RolePlayerConstraintAttrContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitRolePlayerConstraintAttr(EropPatientAIParser.RolePlayerConstraintAttrContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterRoleplayerConstraint(EropPatientAIParser.RoleplayerConstraintContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitRoleplayerConstraint(EropPatientAIParser.RoleplayerConstraintContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterInDotRopSet(EropPatientAIParser.InDotRopSetContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitInDotRopSet(EropPatientAIParser.InDotRopSetContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterInRopSet(EropPatientAIParser.InRopSetContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitInRopSet(EropPatientAIParser.InRopSetContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterPassaction(EropPatientAIParser.PassactionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitPassaction(EropPatientAIParser.PassactionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterContractDocument(EropPatientAIParser.ContractDocumentContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitContractDocument(EropPatientAIParser.ContractDocumentContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterRemaction(EropPatientAIParser.RemactionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitRemaction(EropPatientAIParser.RemactionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterHourEqualsNotEqBeforeAfter(EropPatientAIParser.HourEqualsNotEqBeforeAfterContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitHourEqualsNotEqBeforeAfter(EropPatientAIParser.HourEqualsNotEqBeforeAfterContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterCompobligDeclaration(EropPatientAIParser.CompobligDeclarationContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitCompobligDeclaration(EropPatientAIParser.CompobligDeclarationContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterOriginatorResponderSimpleCondition(EropPatientAIParser.OriginatorResponderSimpleConditionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitOriginatorResponderSimpleCondition(EropPatientAIParser.OriginatorResponderSimpleConditionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterGovernanceOperationType(EropPatientAIParser.GovernanceOperationTypeContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitGovernanceOperationType(EropPatientAIParser.GovernanceOperationTypeContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterTecFailOutcome(EropPatientAIParser.TecFailOutcomeContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitTecFailOutcome(EropPatientAIParser.TecFailOutcomeContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterTimeUnit(EropPatientAIParser.TimeUnitContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitTimeUnit(EropPatientAIParser.TimeUnitContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterTimeConstraintAttr(EropPatientAIParser.TimeConstraintAttrContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitTimeConstraintAttr(EropPatientAIParser.TimeConstraintAttrContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterEqualsNotEqWeekDay(EropPatientAIParser.EqualsNotEqWeekDayContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitEqualsNotEqWeekDay(EropPatientAIParser.EqualsNotEqWeekDayContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterAbsoluteTimeSpec(EropPatientAIParser.AbsoluteTimeSpecContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitAbsoluteTimeSpec(EropPatientAIParser.AbsoluteTimeSpecContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterTermaction(EropPatientAIParser.TermactionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitTermaction(EropPatientAIParser.TermactionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterHappenedExpression(EropPatientAIParser.HappenedExpressionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitHappenedExpression(EropPatientAIParser.HappenedExpressionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterTimeDirectComparison(EropPatientAIParser.TimeDirectComparisonContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitTimeDirectComparison(EropPatientAIParser.TimeDirectComparisonContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterBoTypeEqualNotEq(EropPatientAIParser.BoTypeEqualNotEqContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitBoTypeEqualNotEq(EropPatientAIParser.BoTypeEqualNotEqContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterTimeDirectComparisonConstraint(EropPatientAIParser.TimeDirectComparisonConstraintContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitTimeDirectComparisonConstraint(EropPatientAIParser.TimeDirectComparisonConstraintContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterObligsRopSet(EropPatientAIParser.ObligsRopSetContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitObligsRopSet(EropPatientAIParser.ObligsRopSetContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterOutcomeConstraint(EropPatientAIParser.OutcomeConstraintContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitOutcomeConstraint(EropPatientAIParser.OutcomeConstraintContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterOriginatorResponderEqNotEq(EropPatientAIParser.OriginatorResponderEqNotEqContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitOriginatorResponderEqNotEq(EropPatientAIParser.OriginatorResponderEqNotEqContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterTimePartialComparisonConstraint(EropPatientAIParser.TimePartialComparisonConstraintContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitTimePartialComparisonConstraint(EropPatientAIParser.TimePartialComparisonConstraintContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterDateEqNotEqBeforeAfter(EropPatientAIParser.DateEqNotEqBeforeAfterContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitDateEqNotEqBeforeAfter(EropPatientAIParser.DateEqNotEqBeforeAfterContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterProhibitionsRopSet(EropPatientAIParser.ProhibitionsRopSetContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitProhibitionsRopSet(EropPatientAIParser.ProhibitionsRopSetContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterAttributeConstraintItem(EropPatientAIParser.AttributeConstraintItemContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitAttributeConstraintItem(EropPatientAIParser.AttributeConstraintItemContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterHistoricalQueryItem(EropPatientAIParser.HistoricalQueryItemContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitHistoricalQueryItem(EropPatientAIParser.HistoricalQueryItemContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterRopConstraintItem(EropPatientAIParser.RopConstraintItemContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitRopConstraintItem(EropPatientAIParser.RopConstraintItemContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterRelativeTime(EropPatientAIParser.RelativeTimeContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitRelativeTime(EropPatientAIParser.RelativeTimeContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterBusinessOpReference(EropPatientAIParser.BusinessOpReferenceContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitBusinessOpReference(EropPatientAIParser.BusinessOpReferenceContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterLhs(EropPatientAIParser.LhsContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitLhs(EropPatientAIParser.LhsContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterConstraintList(EropPatientAIParser.ConstraintListContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitConstraintList(EropPatientAIParser.ConstraintListContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterOutcomeCondition(EropPatientAIParser.OutcomeConditionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitOutcomeCondition(EropPatientAIParser.OutcomeConditionContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterConditionExpr(EropPatientAIParser.ConditionExprContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitConditionExpr(EropPatientAIParser.ConditionExprContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterRoleplayerDeclaration(EropPatientAIParser.RoleplayerDeclarationContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitRoleplayerDeclaration(EropPatientAIParser.RoleplayerDeclarationContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterNotConstraint(EropPatientAIParser.NotConstraintContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitNotConstraint(EropPatientAIParser.NotConstraintContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterSuccessOutcome(EropPatientAIParser.SuccessOutcomeContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitSuccessOutcome(EropPatientAIParser.SuccessOutcomeContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void enterResponder(EropPatientAIParser.ResponderContext ctx) {
+
+	}
+
+	/**
+	 * @param ctx the parse tree
+	 */
+	@Override
+	public void exitResponder(EropPatientAIParser.ResponderContext ctx) {
+
+	}
+
+	/**
+	 * @param terminalNode
+	 */
+	@Override
+	public void visitTerminal(TerminalNode terminalNode) {
+
+	}
+
+	/**
+	 * @param errorNode
+	 */
+	@Override
+	public void visitErrorNode(ErrorNode errorNode) {
+
+	}
+
+	/**
+	 * @param parserRuleContext
+	 */
+	@Override
+	public void enterEveryRule(ParserRuleContext parserRuleContext) {
+
+	}
+
+	/**
+	 * @param parserRuleContext
+	 */
+	@Override
+	public void exitEveryRule(ParserRuleContext parserRuleContext) {
+
+	}
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 }

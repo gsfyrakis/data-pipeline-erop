@@ -3,16 +3,18 @@ package com.translator.rulestructureclasses;
 public class AddOrRemoveAction {
     private String rolePlayer;
     private String ropSet;
-    private String operatior;
-    private String businessOp;
+    private String operation;
+    private String governanceOp;
     private String responder;
+    private String dateTime;
 
     public AddOrRemoveAction() {
         this.rolePlayer = "not set";
         this.ropSet = "not set";
-        this.operatior = "not set";
-        this.businessOp = "not set";
+        this.operation = "not set";
+        this.governanceOp = "not set";
         this.responder = "not set";
+        this.dateTime = "not set";
     }
 
     public String getRolePlayer() {
@@ -31,24 +33,25 @@ public class AddOrRemoveAction {
         this.ropSet = ropSet;
     }
 
-    public String getOperatior() {
-        return operatior;
+    public String getOperation() {
+        return operation;
     }
 
-    public void setOperatior(String operatior) {
-        this.operatior = operatior;
+    public void setOperation(String operation) {
+        this.operation = operation;
     }
 
-    public String getBusinessOp() {
-        return businessOp;
+    public String getGovernanceOp() {
+        return governanceOp;
     }
 
-    public void setBusinessOp(String businessOp) {
-        this.businessOp = businessOp;
+    public void setGovernanceOp(String governanceOp) {
+        this.governanceOp = governanceOp;
     }
 
     public boolean shouldCreateNew() {
-        return (rolePlayer.equals("not set") || businessOp.equals("not set") || responder.equals("not set")) ? false : true;
+        return (rolePlayer.equals("not set") || governanceOp.equals("not set") || responder.equals("not set") || dateTime.equals("not set")) ? false : true;
+//        return (rolePlayer.equals("not set") || governanceOp.equals("not set") ||  dateTime.equals("not set")) ? false : true;
     }
 
     public String getResponder() {
@@ -57,5 +60,13 @@ public class AddOrRemoveAction {
 
     public void setResponder(String responder) {
         this.responder = responder;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 }

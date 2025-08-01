@@ -1,0 +1,44 @@
+package GovernanceContract
+import uk.ac.tees.erop.*;
+import  uk.ac.tees.logging.CCCLogger;
+
+global RolePlayer dataController,dataProcessor,qualityAssessor,biasAuditor,regulatoryOfficer;
+global ROPSet ropDataController,dataProcessor,qualityAssessor,biasAuditor,regulatoryOfficer
+global GovernanceOperation dataCollection;
+global GovernanceOperation dataAnnotation;
+global GovernanceOperation dataLabelling;
+global GovernanceOperation dataCleaning;
+global GovernanceOperation dataUpdating;
+global GovernanceOperation dataEnrichment;
+global GovernanceOperation dataAggregation;
+global GovernanceOperation dataValidation;
+global GovernanceOperation qualityAssessment;
+global GovernanceOperation datasetSuitabilityReview;
+global GovernanceOperation dataGapAnalysis;
+global GovernanceOperation biasDetection;
+global GovernanceOperation biasMitigation;
+global GovernanceOperation fairnessAudit;
+global GovernanceOperation demographicAnalysis;
+global GovernanceOperation complianceReview;
+global GovernanceOperation regulatoryApproval;
+global GovernanceOperation dataGovernanceAudit;
+global GovernanceOperation specialCategoryDataReview;
+global GovernanceOperation consentValidation;
+global GovernanceOperation dataMinimizationCheck;
+global GovernanceOperation provenanceDocumentation;
+global GovernanceOperation dataLineageTracking;
+global GovernanceOperation auditTrailCreation;
+global GovernanceOperation[] dataAnnotation,DataLabelling,DataCleaning,DataUpdating,DataEnrichment,DataAggregation;
+global GovernanceOperation[] complianceReview,RegulatoryApproval,DataGovernanceAudit;
+
+rule ""R1DataCollectionGovernance""
+when $e: Event(type == "datacollection",originator == "dataprocessor",responder == "datacontroller")
+eval(ropDataProcessor.matchesObligs(dataCollection))
+then
+ropDataProcessor.addObligation(provenanceDocumentation, dataController,"24h")
+ropDataProcessor.addObligation(consentValidation, dataController,"12h")
+ropQualityAssessor.addObligation(qualityAssessment, dataProcessor,"48h")
+ropDataProcessor.addRight(dataPreparationCompliance, qualityAssessor,"7d")
+ropRegulatoryOfficer.addObligation(complianceReview, dataProcessor,"4h")
+end
+

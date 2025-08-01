@@ -15,14 +15,14 @@ import com.translator.rulestructureclasses.TimePartialComparison;
 
 public class VariablesMemory {
     private Queue<String> rolePlayers;
-    private Queue<String> businessOps;
+    private Queue<String> governanceOps;
     private LinkedList<CompositeObligation> compObligs;
     private LinkedList<Rule> rules;
     private RhsAction rhsAction;
 
     public VariablesMemory() {
         rolePlayers = new LinkedList<String>();
-        businessOps = new LinkedList<String>();
+        governanceOps = new LinkedList<String>();
         compObligs = new LinkedList<CompositeObligation>();
         rules = new LinkedList<Rule>();
     }
@@ -31,8 +31,8 @@ public class VariablesMemory {
         rolePlayers.add(s);
     }
 
-    public void addBusinessOp(String s) {
-        businessOps.add(s);
+    public void addGovernanceOp(String s) {
+        governanceOps.add(s);
     }
 
     public void addCompOblig(CompositeObligation s) {
@@ -43,8 +43,8 @@ public class VariablesMemory {
         return rolePlayers;
     }
 
-    public Queue<String> getBusinessOps() {
-        return businessOps;
+    public Queue<String> getGovernanceOps() {
+        return governanceOps;
     }
 
     public LinkedList<CompositeObligation> getCompObligs() {
@@ -111,9 +111,8 @@ public class VariablesMemory {
     }
 
     public void addOutcomeConstraintOperation(String variableName) {
-        // TODO Auto-generated method stub
-        //addOutcomeConstraintEvent();
-        rules.getLast().getConstraints().getOutcomeConstraints().getLast().setOperation(variableName);
+        addOutcomeConstraintEvent();
+//        rules.getLast().getConstraints().getOutcomeConstraints().getLast().setOperation(variableName);
     }
 
     public void addOutcomeConstraintEvent() {
@@ -130,7 +129,7 @@ public class VariablesMemory {
 
     public void addTimeDirectCompOperator(String variableName) {
         if (rules.getLast().getConstraints().timeDirectCompEmpty()) {
-            //rules.getLast().getConstraints().setTimeDirectComparisons(new LinkedList<TimeDirectComparison>());
+            rules.getLast().getConstraints().setTimeDirectComparisons(new LinkedList<TimeDirectComparison>());
         }
         rules.getLast().getConstraints().getTimeDirectComparisons().add(new TimeDirectComparison());
         rules.getLast().getConstraints().getTimeDirectComparisons().getLast().settDirectComparisonOp(variableName);
@@ -240,7 +239,9 @@ public class VariablesMemory {
     public void addRopOperatorRhs(String variableName) {
         rules.getLast().getIfConstraints().getRopConstraints().getLast().setOperator(variableName);
     }
-
+    public void addRopRolePlayerRhs(String variableName) {
+        rules.getLast().getIfConstraints().getRopConstraints().getLast().setRoleplayer(variableName);
+    }
     public void addOutcomeConstraintBool(String variableName) {
         rules.getLast().getConstraints().getOutcomeConstraints().getLast().setValue(variableName);
     }
@@ -293,39 +294,43 @@ public class VariablesMemory {
 
     public boolean compObligShouldCreateNew() {
         if ((!compObligs.getLast().getName().equals("not set")) &&
-                (!compObligs.getLast().getFirstBo().equals("not set")) &&
-                (!compObligs.getLast().getSecondBo().equals("not set"))) {
+                (!compObligs.getLast().getFirstGovOp().equals("not set")) &&
+                (!compObligs.getLast().getSecondGovOp().equals("not set"))) {
             return true;
         }
         return false;
     }
 
-    public boolean isCompositeOblig(String businessOp) {
+    public boolean isCompositeOblig(String governanceOp) {
         for (CompositeObligation compOblig : compObligs) {
-            if (compOblig.getName().equals(businessOp)) {
+            if (compOblig.getName().equals(governanceOp)) {
                 return true;
             }
         }
         return false;
     }
 
-    public String getFirstBoFor(String s) {
+    public String getFirstGovOpFor(String s) {
         for (CompositeObligation compOblig : compObligs) {
             if (compOblig.getName().equals(s)) {
-                return compOblig.getFirstBo();
+                return compOblig.getFirstGovOp();
             }
         }
 
-        return "first BO not set";
+        return "first GO not set";
     }
 
-    public String getSecondBoFor(String s) {
+    public String getSecondGovOpFor(String s) {
         for (CompositeObligation compOblig : compObligs) {
             if (compOblig.getName().equals(s)) {
-                return compOblig.getSecondBo();
+                return compOblig.getSecondGovOp();
             }
         }
 
-        return "second BO not set";
+        return "second GO not set";
+    }
+
+    public void addDateTimeThen(String variableName) {
+        rules.getLast().getRhsIfs().getThenActionBlock().getAddRemAction().getLast().setDateTime(variableName);
     }
 }
