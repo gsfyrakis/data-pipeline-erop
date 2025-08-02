@@ -1,6 +1,6 @@
-# EROP Translator Application
+# Governance EROP Translator to Drools
 
-This application translates EROP (Emergency Response and Operational Protocol) contracts using ANTLR parsing and custom translation logic.
+This application translates EROP (Event-Right-Obligation-Prohibition) rules using ANTLR parsing and custom translation logic to Drools.
 
 ## Prerequisites
 
