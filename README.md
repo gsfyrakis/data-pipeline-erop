@@ -1,4 +1,3 @@
-```markdown
 # EROP Translator Application
 
 This application translates EROP (Emergency Response and Operational Protocol) contracts using ANTLR parsing and custom translation logic.
